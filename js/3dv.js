@@ -74,6 +74,11 @@ function Orientation( params )
       direction = function(){ return _direction; },
       vertical = function(){ return _vertical; },
       horizontal = function(){ return _horizontal; },
+
+      rotate = function( matrix )
+      {
+        var newDirection = matrix.mult( _direction );
+      };
 }
 
 function Matrix( params )
@@ -268,7 +273,8 @@ function Vector( params )
       getUnit : { get : function(){ return getUnit; } },
       scale : { get : function(){ return scale; } },
       add : { get : function(){ return add; } },
-      dot : { get : function(){ return dot; } }
+      dot : { get : function(){ return dot; } },
+      cross : { get : function(){ return cross; } },
     } );
     return vectorObj;
   }
@@ -282,7 +288,8 @@ function Vector( params )
     get getUnit() { return getUnit() },
     get scale(){ return scale; },
     get add(){ return add; },
-    get dot(){ return dot; }
+    get dot(){ return dot; },
+    get cross(){ return cross; }
   };
 }
 
