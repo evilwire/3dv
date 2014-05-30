@@ -1,0 +1,23 @@
+html, body 
+{
+   margin: 0px;
+   padding: 0px;
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   min-height: 100%;
+   min-width: 100%;
+   overflow-x: hidden;
+}
+
+div.canvas
+{
+   position: absolute;
+   background-color: RGB(230, 230, 230);
+   margin: -300px auto;
+   width: 1000px;
+   height: 600px;
+   top: 50%;
+   left: 0px;
+   right: 0px;
+}
