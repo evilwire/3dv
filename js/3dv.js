@@ -75,10 +75,32 @@ function Orientation( params )
       vertical = function(){ return _vertical; },
       horizontal = function(){ return _horizontal; },
 
-      rotate = function( matrix )
-      {
-        var newDirection = matrix.mult( _direction );
+      rotate = function( matrix ) {
+        var newDirection = matrix.mult( _direction ),
+            newVertical = matrix.mult( _vertical );
+        return new Orientation( {
+          direction : newDirection,
+          vertical : newVertical
+        } );
       };
+  if( Object.defineProperties )
+  {
+    var orientationObj = {};
+    Object.defineProperties( orientationObj, {
+      direction : { get : direction },
+      vertical : { get : vertical },
+      horizontal : { get : horizontal },
+      rotate : { get : function(){ return rotate; } }
+    } );
+    return orientationObj;
+  }
+
+  return {
+    get direction(){ return _direction; },
+    get vertical(){ return _vertical; },
+    get horizontal(){ return _horizontal; },
+    get rotate(){ return rotate; }
+  };
 }
 
 function Matrix( params )
