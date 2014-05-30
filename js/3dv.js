@@ -68,7 +68,12 @@ function Camera( params )
 
 function Orientation( params )
 {
-
+  var _direction = params.direction.getUnit(),
+      _vertical = params.vertical.getUnit(),
+      _horizontal = _vertical.cross( _horizontal ),
+      direction = function(){ return _direction; },
+      vertical = function(){ return _vertical; },
+      horizontal = function(){ return _horizontal; },
 }
 
 function Matrix( params )
@@ -215,27 +220,39 @@ function Vector( params )
   scale = function( scalar )
   {
     return new Vector( {
-      vector : [ this.index(1) * scalar,
-                 this.index(2) * scalar,
-                 this.index(3) * scalar ]
+      vector : [ index(1) * scalar,
+                 index(2) * scalar,
+                 index(3) * scalar ]
     } );
   },
 
   add = function( vector )
   {
     return new Vector( { 
-      vector : [ this.index(1) + vector.index(1),
-                 this.index(2) + vector.index(2),
-                 this.index(3) + vector.index(3) ]
+      vector : [ index(1) + vector.index(1),
+                 index(2) + vector.index(2),
+                 index(3) + vector.index(3) ]
     } );
   },
 
   /// ops
   dot = function( vector )
   {
-    return this.index(1) * vector.index(1) +
-           this.index(2) * vector.index(2) +
-           this.index(3) * vector.index(3);
+    return index(1) * vector.index(1) +
+           index(2) * vector.index(2) +
+           index(3) * vector.index(3);
+  },
+
+  cross = function( vector )
+  {
+    var i1 = index(1), i2 = index(2), i3 = index(3),
+        v1 = vector.index(1), v2 = vector.index(2), v3 = vector.index(3);
+
+    return new Vector( {
+      vector : [ i2 * v3 - i3 * v2,
+                 i3 * v1 - i1 * v3,
+                 i2 * v3 - i3 * v2 ]
+      } );
   };
 
   if( Object.defineProperties )
