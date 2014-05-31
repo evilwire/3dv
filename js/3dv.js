@@ -1,3 +1,44 @@
+(function(){
+  function decimalAdjust(type, value, exp) {
+    // If the exp is undefined or zero...
+    if (typeof exp === 'undefined' || +exp === 0) {
+      return Math[type](value);
+    }
+    value = +value;
+    exp = +exp;
+    // If the value is not a number or the exp is not an integer...
+    if (isNaN(value) || 
+       !(typeof exp === 'number' && exp % 1 === 0)) {
+      return NaN;
+    }
+    // Shift
+    value = value.toString().split('e');
+    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+    // Shift back
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+  }
+
+  // Decimal round
+  if (!Math.round10) {
+    Math.round10 = function(value, exp) {
+      return decimalAdjust('round', value, exp);
+    };
+  }
+  // Decimal floor
+  if (!Math.floor10) {
+    Math.floor10 = function(value, exp) {
+      return decimalAdjust('floor', value, exp);
+    };
+  }
+  // Decimal ceil
+  if (!Math.ceil10) {
+    Math.ceil10 = function(value, exp) {
+      return decimalAdjust('ceil', value, exp);
+    };
+  }
+})();
+
 function Camera( params )
 {
   // private variables
@@ -189,9 +230,13 @@ function Matrix( params )
   }
 })
 
+/**
+ * @convention: everything is rounded at 10 precisions.
+ *
+ */
 function Vector( params )
 {
-  var _vector = params.vector,
+  var _vector = params.vector.slice(0),
       _length = Math.sqrt( _vector[0] * _vector[0] +
                            _vector[1] * _vector[1] +
                            _vector[2] * _vector[2] ),
@@ -210,7 +255,7 @@ function Vector( params )
 
   length = function()
   {
-    return _length;
+    return Math.round10(_length, -10);
   },
 
   azimuthAngle = function()
@@ -241,7 +286,7 @@ function Vector( params )
 
   isZero = function()
   {
-    return _length === 0;
+    return Math.round10(_length, -10) == 0.0;
   },
 
   getUnit = function()
@@ -273,9 +318,9 @@ function Vector( params )
   /// ops
   dot = function( vector )
   {
-    return index(1) * vector.index(1) +
-           index(2) * vector.index(2) +
-           index(3) * vector.index(3);
+    return Math.round10( index(1) * vector.index(1) +
+                         index(2) * vector.index(2) +
+                         index(3) * vector.index(3), -10);
   },
 
   cross = function( vector )

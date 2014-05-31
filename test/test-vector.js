@@ -7,9 +7,9 @@
 
       zero_vector = new Vector({ vector : [0, 0, 0] }),
 
-      very_small_vector = new Vector({ vector : [0.00000000000001, 
-                                                 0.00000000000001, 
-                                                 0.00000000000001] }),
+      very_small_vector = new Vector({ vector : [0.00001, 
+                                                 0.00001, 
+                                                 0.00001] }),
 
       random_vector = new Vector({ vector: random_vector_arr }),
       
@@ -19,6 +19,7 @@
       fixed_vector = new Vector( { vector : [4, -12.64, 0] } );
 
   var testSuites = {
+    /// TESTING METHOD CORRECTNESS
     'vector index test' : function()
     {
       equal( random_vector_arr[0],
@@ -94,7 +95,7 @@
     function()
     {
       var length_square = random_vector.dot( random_vector );
-      equal( Math.sqrt(length_square),
+      equal( Math.round10( Math.sqrt(length_square), -10),
              random_vector.length,
              'Dotting a vector with itself should return the square of its length' );
     },
@@ -162,9 +163,55 @@
       equal( cross_product.index(3),
              0,
              'Crossing with e2 should eliminate e2' );
-    }
+    },
 
-  };
+    'crossing with a vector should be perpendicular to that vector' :
+    function()
+    {
+      var cross_product = random_vector.cross( fixed_vector );
+      equal( cross_product.dot( random_vector ),
+             0,
+             'A vector should be orthogonal to its cross\
+              product with another vector' );
+
+      equal( cross_product.dot( fixed_vector ),
+             0,
+             'A vector should be orthogonal to its cross\
+              product with another vector' );
+    },
+
+    'a unit vector is actually of length 1' : function()
+    {
+      var unit_vector = random_vector.getUnit();
+
+      equal( unit_vector.length,
+             1,
+             'The length of the unit vector should be about 1' );
+    },
+
+    'scaling a unit vector associated to a vector by the vector\'s length' :
+    function()
+    {
+      var unit_vector = random_vector.getUnit(),
+          length = random_vector.length,
+          neg_random_vector = unit_vector.scale( -length );
+      
+      ok( neg_random_vector.add( random_vector ).isZero(),
+          'Scaling v/|v| by |v| should give us v.' );
+    },
+
+    /// BOUNDARY TESTS
+
+    /// IMPLEMENTATION TESTS
+    'data structures should be encapsulated' :
+    function()
+    {
+      random_vector_arr[2] = -4;
+      notEqual( random_vector.index(3),
+                -4,
+                'Changing a defining vector should not change the vector value' );
+    }
+  }; 
 
   for( title in testSuites )
   {
