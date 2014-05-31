@@ -210,6 +210,21 @@
       notEqual( random_vector.index(3),
                 -4,
                 'Changing a defining vector should not change the vector value' );
+    },
+
+    'data structure should not be mutable' :
+    function()
+    {
+      random_vector.azimuthAngle = 2 * Math.PI;
+      notEqual( random_vector.azimuthAngle,
+                2 * Math.PI,
+                'Should not be able to change the azimuth angle' );
+
+      random_vector.elevationAngle = 2 * Math.PI;
+      notEqual( random_vector.elevationAngle,
+                2 * Math.PI,
+                'Should not be able to change the elevation angle' );
+
     }
   }; 
 
