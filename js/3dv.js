@@ -146,7 +146,7 @@ function Orientation( params )
 
 function Matrix( params )
 {
-  var _matrix = params.matrix;
+  var _matrix = params.matrix,
 
   actOn = function( vector )
   {
@@ -203,7 +203,7 @@ function Matrix( params )
           { get : function(){ return method; } }
       })();
     }
-    console.log( staticMethods );
+
     Object.defineProperties( Matrix, staticMethods );
   }
   else
