@@ -107,7 +107,7 @@ function Matrix( params )
 {
   var _matrix = params.matrix;
 
-  var mult = function( vector )
+  mult = function( vector )
   {
     var row = [_matrix[0][0] * vector.index(1) +
                _matrix[0][1] * vector.index(2) +
@@ -121,6 +121,15 @@ function Matrix( params )
                _matrix[2][1] * vector.index(2) +
                _matrix[2][2] * vector.index(3)];
     return new Vector({ vector : row });
+  },
+
+  transpose = function()
+  {
+    return new Matrix( {
+       matrix : [[_matrix[0][0], _matrix[1][0], _matrix[2][0]],
+                 [_matrix[0][1], _matrix[1][1], _matrix[2][1]],
+                 [_matrix[0][1], _matrix[1][2], _matrix[2][2]]]
+    } );
   }
 }
 
@@ -177,7 +186,6 @@ function Matrix( params )
   
   Rotation : function( vector, angle )
   {
-
   }
 })
 
@@ -278,7 +286,7 @@ function Vector( params )
     return new Vector( {
       vector : [ i2 * v3 - i3 * v2,
                  i3 * v1 - i1 * v3,
-                 i2 * v3 - i3 * v2 ]
+                 i1 * v2 - i2 * v1 ]
       } );
   };
 
@@ -320,6 +328,7 @@ function Renderer( params )
 
 }
 
+/*
 $(document).ready( function( event )
 {
    var canvas = $('.canvas')[0],
@@ -336,3 +345,4 @@ $(document).ready( function( event )
    console.log( vector.azimuthAngle );
 
 } );
+*/
