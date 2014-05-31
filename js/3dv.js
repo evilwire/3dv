@@ -323,6 +323,13 @@ function Vector( params )
                          index(3) * vector.index(3), -10);
   },
 
+  approxEq = function( vector )
+  {
+    return Math.round10( index(1) - vector.index(1), -10 ) == 0.0 &&
+           Math.round10( index(2) - vector.index(2), -10 ) == 0.0 &&
+           Math.round10( index(3) - vector.index(3), -10 ) == 0.0;
+  },
+
   cross = function( vector )
   {
     var i1 = index(1), i2 = index(2), i3 = index(3),
@@ -349,6 +356,7 @@ function Vector( params )
       scale : { get : function(){ return scale; } },
       add : { get : function(){ return add; } },
       dot : { get : function(){ return dot; } },
+      approxEq : { get : function(){ return approxEq; } },
       cross : { get : function(){ return cross; } },
     } );
     return vectorObj;
@@ -364,6 +372,7 @@ function Vector( params )
     get scale(){ return scale; },
     get add(){ return add; },
     get dot(){ return dot; },
+    get approxEq(){ return approxEq; },
     get cross(){ return cross; }
   };
 }
