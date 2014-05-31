@@ -313,6 +313,22 @@
              'The elevation angle of e3 should be PI/2' );
     },
 
+    'the elevation angle of negative of e3' : function()
+    {
+      var negE3 = e3.scale( -1 );
+      equal( negE3.elevationAngle,
+             -Math.PI/2,
+             'The elevation angle of -e3 should be -PI/2' );
+    },
+
+    'the azimuth angle of -e1' : function()
+    {
+      var negE1 = e1.scale( -1 );
+      equal( negE1.azimuthAngle,
+             Math.PI,
+             'The azimuth angle of -e1 should be PI' );
+    },
+
     /// IMPLEMENTATION TESTS
     'data structures should be encapsulated' :
     function()
@@ -341,6 +357,6 @@
 
   for( title in testSuites )
   {
-    test( title, testSuites[ title ] );
+    test( '[Vector]: ' + title, testSuites[ title ] );
   }
 })();
