@@ -131,6 +131,80 @@
 
     },
 
+    'addition should be commutative' : function()
+    {
+      var sum = randomVector.add( fixedVector ),
+          commuteSum = fixedVector.add( randomVector );
+      
+      ok( sum.approxEq( commuteSum ),
+          'Vector addition should be commutative.' );
+    },
+
+    'angles of e1 + e2' : function()
+    {
+      var e12 = e1.add(e2);
+
+      equal( Math.round10( e12.azimuthAngle, -10),
+             Math.round10( Math.PI/4, -10),
+             'The azimuth angle of [1,1,0] should be PI/4' );
+
+      equal( e12.elevationAngle,
+             0,
+             'The elevation angle of [1,1,0] should be 0' );
+    },
+
+    'angles of e2 + e3' : function()
+    {
+      var e23 = e2.add(e3);
+
+      equal( Math.round10( e23.azimuthAngle, -10),
+             Math.round10( Math.PI/2, -10),
+             'The azimuth angle of [0,1,1] should be PI/2' );
+
+      equal( Math.round10( e23.elevationAngle, -10),
+             Math.round10( Math.PI/4, -10 ),
+             'The elevation angle of [0,1,1] should be PI/4' );
+    },
+
+    'angles of e1 + e2 + e3' : function()
+    {
+      var e123 = e1.add( e2.add( e3 ) );
+
+      equal( Math.round10( e123.azimuthAngle, -10),
+             Math.round10( Math.PI/4, -10),
+             'The azimuth angle of [1, 1, 1] should be PI/4' );
+
+      equal( Math.round10( e123.elevationAngle, -10),
+             Math.round10( Math.asin( 1 / Math.sqrt(3) ), -10 ),
+             'The elevation angle of [1, 1, 1] should be asin(1/sqrt(3))' );
+    },
+
+    'angles of e1 - e2 + e3' : function()
+    {
+      var e123 = e1.add( e2.scale(-1).add( e3 ) );
+
+      equal( Math.round10( e123.azimuthAngle, -10),
+             Math.round10( Math.PI * 7/4, -10),
+             'The azimuth angle of [1, -1, 1] should be 7PI/4' );
+
+      equal( Math.round10( e123.elevationAngle, -10),
+             Math.round10( Math.asin( 1 / Math.sqrt(3) ), -10 ),
+             'The elevation angle of [1, -1, 1] should be asin(1/sqrt(3)' );
+    },
+
+    'angles of e1 + e2 - e3' : function()
+    {
+      var e123 = e1.add( e2.add( e3.scale(-1) ) );
+
+      equal( Math.round10( e123.azimuthAngle, -10),
+             Math.round10( Math.PI / 4, -10),
+             'The azimuth angle of [1, 1, -1] should be PI/4' );
+
+      equal( Math.round10( e123.elevationAngle, -10),
+             Math.round10( -Math.asin( 1 / Math.sqrt(3) ), -10 ),
+             'The elevation angle of [1, 1, -1] should be asin(1/sqrt(3)' );
+    },
+
     'azimuth and elevation angle should not change from scaling' :
     function()
     {
@@ -327,6 +401,14 @@
       equal( negE1.azimuthAngle,
              Math.PI,
              'The azimuth angle of -e1 should be PI' );
+    },
+
+    'the azimuth angle of -e2' : function()
+    {
+      var negE2 = e2.scale( -1 );
+      equal( negE2.azimuthAngle,
+             Math.PI * 3 / 2,
+             'The azimuth angle of -e2 should be 3PI/2' );
     },
 
     /// IMPLEMENTATION TESTS
