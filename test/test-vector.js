@@ -145,9 +145,23 @@
            of opposite direction' );
     },
 
-    'crossing with e1 eliminates e1' : function()
+    'crossing with e_i should eliminate e_i' : function()
     {
       var cross_product = random_vector.cross( e1 );
+
+      equal( cross_product.index(1),
+             0,
+             'Crossing with e1 should eliminate e1' );
+
+      cross_product = random_vector.cross( e2 );
+      equal( cross_product.index(2),
+             0,
+             'Crossing with e2 should eliminate e2' );
+
+      cross_product = random_vector.cross( e3 );
+      equal( cross_product.index(3),
+             0,
+             'Crossing with e2 should eliminate e2' );
     }
 
   };
