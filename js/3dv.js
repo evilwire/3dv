@@ -239,9 +239,11 @@ function Matrix( params )
         u11 = u1 * u1, u12 = u1 * u2, u13 = u1 * u3,
         u22 = u2 * u2, u23 = u2 * u3, u33 = u3 * u3,
 
-    rows = [[ 1 - u11, u12, u13 ],
-            [ u12, 1 - u22, u23 ],
-            [ u13, u23, 1 - u33 ]];
+
+
+    rows = [[ 1 - u11, -u12, -u13 ],
+            [ -u12, 1 - u22, -u23 ],
+            [ -u13, -u23, 1 - u33 ]];
     return new Matrix({ matrix: rows });
   },
 

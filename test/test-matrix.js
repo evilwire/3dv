@@ -76,19 +76,33 @@
       var perpProjMatrix = Matrix.PerpendicularProjection( e1 ),
           newVector = perpProjMatrix.actOn( vector );
 
-      ok( newVector.approxEq( new Vector({ vector : [0, 2, 3]}) ),
+      ok( newVector.approxEq( new Vector({ vector : [0, 0, 12]}) ),
           'Perpendicular projection to e1 should kill first entry');
 
       perpProjMatrix = Matrix.PerpendicularProjection( e2 );
       newVector = perpProjMatrix.actOn( vector );
 
-      ok( newVector.approxEq( new Vector({ vector : [1, 0, 3]}) ),
+      ok( newVector.approxEq( new Vector({ vector : [-20, 0, 12]}) ),
           'Perpendicular projection to e1 should kill second entry');
 
       perpProjMatrix = Matrix.PerpendicularProjection( e3 );
       newVector = perpProjMatrix.actOn( vector );
-      ok( newVector.approxEq( new Vector({ vector : [1, 2, 0]}) ),
+      ok( newVector.approxEq( new Vector({ vector : [-20, 0, 0]}) ),
           'Perpendicular projection to e1 should kill third entry');
+    },
+
+    'perpendicular projection to a vector v' :
+    function()
+    {
+      var unit = randomVector.getUnit(),
+
+      perpProjection = Matrix.PerpendicularProjection( unit ),
+      newVector = perpProjection.actOn( vector );
+
+      equal( Math.round10( newVector.dot( unit ), -10 ),
+             0.0,
+             'Perpendicular projection matrix acting on\
+              a vector should be perpendicular to the unit' );
     },
 
     // test for projection
