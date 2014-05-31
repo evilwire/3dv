@@ -1,9 +1,17 @@
 (function()
 {
+  var identityMatrix = Matrix.Identity(),
+      
+      vector = new Vector({ vector: [1, 2, 3] });
+
   var testSuites = {
-    'hello world test' : function()
+    'identity act trivially on a vector' : function()
     {
-      equal( 1, 1, 'Passed!' );
+      var newVector = identityMatrix.actOn(vector);
+      //console.log( newVector );
+
+      ok( newVector.approxEq( vector ),
+          'The indentity matrix should act trivially on a vector' );
     }
   }
 

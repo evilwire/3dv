@@ -117,8 +117,8 @@ function Orientation( params )
       horizontal = function(){ return _horizontal; },
 
       rotate = function( matrix ) {
-        var newDirection = matrix.mult( _direction ),
-            newVertical = matrix.mult( _vertical );
+        var newDirection = matrix.actOn( _direction ),
+            newVertical = matrix.actOn( _vertical );
         return new Orientation( {
           direction : newDirection,
           vertical : newVertical
@@ -148,7 +148,7 @@ function Matrix( params )
 {
   var _matrix = params.matrix;
 
-  mult = function( vector )
+  actOn = function( vector )
   {
     var row = [_matrix[0][0] * vector.index(1) +
                _matrix[0][1] * vector.index(2) +
@@ -172,18 +172,51 @@ function Matrix( params )
                  [_matrix[0][1], _matrix[1][2], _matrix[2][2]]]
     } );
   }
+
+  if( Object.defineProperties )
+  {
+    var matrixObj = {};
+    Object.defineProperties( matrixObj, {
+      actOn : { get : function(){ return actOn; } },
+      transpose : { get : function(){ return transpose; } }
+    } );
+    return matrixObj;
+  }
+
+  return {
+    get actOn(){ return actOn; },
+    get transpose(){ return transpose; }
+  };
 }
 
 (function( MatrixMethods )
 {
   if( Object.defineProperties )
   {
-
+    var staticMethods = {};
+    for( methodName in MatrixMethods )
+    {
+      (function()
+      {
+        var method = MatrixMethods[methodName];
+        staticMethods[methodName] = 
+          { get : function(){ return method; } }
+      })();
+    }
+    console.log( staticMethods );
+    Object.defineProperties( Matrix, staticMethods );
   }
   else
-  {
-  }
+    for( methodName in MatrixMethods )
+      Matrix[methodName] = MatrixMethods[methodName];
 })({
+  Identity: function()
+  {
+    return new Matrix({ matrix: [[1, 0, 0],
+                                 [0, 1, 0],
+                                 [0, 0, 1]] });
+  },
+
   Projection : function( unitVector )
   {
     var u1 = unitVector.index(1),
