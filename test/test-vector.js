@@ -131,13 +131,33 @@
 
     },
 
+    'azimuth and elevation angle should not change from scaling' :
+    function()
+    {
+      var randomVectorScaled = randomVector.scale(3.491);
+
+      if( !isNaN( randomVector.azimuthAngle ) )
+        equal( Math.round10( randomVectorScaled.azimuthAngle, -10),
+               Math.round10( randomVector.azimuthAngle, -10),
+               'The azimuth angle should not change from scaling' );
+      else
+        ok( isNaN( randomVectorScaled.azimuthAngle ),
+            'The azimuth angle should not change from scaling' );
+      
+      if( !isNaN( randomVector.elevationAngle ) )
+        equal( Math.round10( randomVectorScaled.elevationAngle, -10),
+               Math.round10( randomVector.elevationAngle, -10),
+               'The elevation angle should not change from scaling' );
+      else
+        ok( isNaN( randomVectorScaled.elevationAngle ),
+           'The elevation angle should not change from scaling' );
+    },
+
     'zero vector length' : function()
     {
-      // check the 
       equal( zeroVector.length, 
              0, 
              'The length of a zero vector should be 0.' );
-      
     },
 
     'zero vector isZero' : function()
@@ -279,6 +299,19 @@
     },
 
     /// BOUNDARY TESTS
+    'the azimuth angle of e1' : function()
+    {
+      equal( e1.azimuthAngle,
+             0.0,
+             'The azimuth angle of e1 should be 0' );
+    },
+
+    'the elevation angle of e3' : function()
+    {
+      equal( e3.elevationAngle,
+             Math.PI/2,
+             'The elevation angle of e3 should be PI/2' );
+    },
 
     /// IMPLEMENTATION TESTS
     'data structures should be encapsulated' :
