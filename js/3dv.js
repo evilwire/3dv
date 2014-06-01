@@ -469,12 +469,6 @@ function Vector( params )
     get cross(){ return cross; }
   };
 }
-
-function Renderer( params )
-{
-
-}
-
 /*
 $(document).ready( function( event )
 {
