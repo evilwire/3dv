@@ -275,34 +275,39 @@ function Matrix( params )
     return new Matrix({ matrix: rows });
   },
 
-  XRotation : function( angle, orientation )
+  /*
+   * @convention: Orientation is ccw
+   */
+  XRotation : function( angle )
   {
     var c = Math.cos( angle ),
-        s = (orientation == 'ccw')? 
-          Math.sin( angle ) : -Math.sin( angle );
+        s = Math.sin( angle );
 
     return new Matrix({ matrix : [[ 1, 0,  0],
                                   [ 0, c, -s],
                                   [ 0, s,  c]] });
   },
   
-  YRotation : function( angle, orientation )
+  /*
+   * @convention: Orientation is ccw
+   */
+  YRotation : function( angle )
   {
     var c = Math.cos( angle ),
-        s = (orientation == 'ccw')? 
-          Math.sin( angle ) : -Math.sin( angle );
-
+        s = Math.sin( angle );
 
     return new Matrix({ matrix : [[ c, 0, -s],
                                   [ 0, 1,  0],
                                   [ s, 0,  c]] });
   },
-
-  ZRotation : function( angle, orientation )
+  
+  /*
+   * @convention: Orientation is ccw
+   */
+  ZRotation : function( angle )
   {
     var c = Math.cos( angle ),
-        s = (orientation == 'ccw')? 
-          Math.sin( angle ) : -Math.sin( angle );
+        s = Math.sin( angle );
 
     return new Matrix({ matrix : [[ c, -s, 0],
                                   [ s,  c, 0],
