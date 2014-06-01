@@ -1,4 +1,4 @@
-var __PointMouseOverStyle = {
+var __PointHoverStyle = {
   r : 10,
   fill : '#3ae'
 },
@@ -7,6 +7,17 @@ __PointStyle = {
   r : 4,
   'stroke-width': 0,
   fill: '#555'
+},
+
+__LineStyle = {
+  'stroke-dasharray' : '. ',
+  'stroke-width' : 1,
+  'stroke-opacity' : .3, 
+  'stroke' : '#555'
+},
+
+__LineHoverStyle = {
+  'stroke-opacity' : 1, 
 }
 
 function Camera( params )
@@ -151,22 +162,35 @@ function SVGPoint( params )
   var __canvas = params.canvas,
   _x = params.x, 
   _y = params.y, 
-  _radius = __PointStyle.r,
+
+  _pointStyle = (_pointStyle = params.style)? 
+    _pointStyle : __PointStyle,
+
+  _pointHoverStyle = 
+    (_pointHoverStyle = params.hoverStyle)? 
+    _pointHoverStyle : __PointHoverStyle,
+
+  _radius = _pointStyle.r,
+
   _viewInstance = null,
+
   pointObj = {},
 
-  render = function(){
-    console.log( _x );
-    console.log( _y );
+  toString = function()
+  {
+    return String(Math.round(_x)) + " " + 
+      String(Math.round(_y));
+  },
 
+  render = function(){
     _viewInstance = 
       __canvas.circle( _x, _y, _radius );
-    _viewInstance.attr( __PointStyle );
+    _viewInstance.attr( _pointStyle );
     
     _viewInstance.mouseover( function( event )
     {
       var anim = Raphael.animation( 
-        __PointMouseOverStyle,
+        _pointHoverStyle,
         100, '<>');
 
       _viewInstance.animate( anim );
@@ -175,7 +199,7 @@ function SVGPoint( params )
     _viewInstance.mouseout( function( event )
     {
       var anim = Raphael.animation( 
-        __PointStyle, 100, '<>');
+        _pointStyle, 100, '<>');
 
       _viewInstance.animate( anim );
     });
@@ -186,14 +210,75 @@ function SVGPoint( params )
     Object.defineProperties( pointObj,
     {
       viewInstance : { get : function(){ return _viewInstance; } },
-      render : { get : function(){ return render; } }
+      render : { get : function(){ return render; } },
+      toString : { get : function(){ return toString; } }
     } );
     return pointObj;
   }
   
   pointObj = {
     get viewInstance(){ return _viewInstance; },
-    get render(){ return render; }
+    get render(){ return render; },
+    get toString(){ return toString; }
   };
   return pointObj;
+}
+
+function SVGLine( params )
+{
+  var __canvas = params.canvas,
+  _start = params.start, 
+  _end = params.end, 
+  _viewInstance = null,
+
+  _lineStyle = (_lineStyle = params.style)? 
+    _lineStyle : __LineStyle,
+
+  _lineHoverStyle = 
+    (_lineHoverStyle = params.hoverStyle)? 
+    _lineHoverStyle : __LineHoverStyle,
+  
+  render = function(){
+    var pathStr = 'M' + _start.toString() + 'L' + _end.toString();
+    console.log( pathStr );
+    _viewInstance = __canvas.path( pathStr );
+
+    _viewInstance.attr( _lineStyle );
+
+    _viewInstance.mouseover( function( event )
+    {
+      var anim = Raphael.animation( 
+        _lineHoverStyle,
+        100, '<>');
+
+      _viewInstance.animate( anim );
+    });
+
+    _viewInstance.mouseout( function( event )
+    {
+      var anim = Raphael.animation( 
+        _lineStyle, 100, '<>');
+
+      _viewInstance.animate( anim );
+    });
+  },
+
+  lineObj = {};
+
+  if( Object.defineProperties )
+  {
+    Object.defineProperties( lineObj,
+    {
+      viewInstance : { get : function(){ return _viewInstance; } },
+      render : { get : function(){ return render; } }
+    } );
+    return lineObj;
+  }
+  
+  lineObj = {
+    get viewInstance(){ return _viewInstance; },
+    get render(){ return render; }
+  };
+
+  return lineObj;
 }

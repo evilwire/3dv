@@ -32,6 +32,14 @@ $(document).ready( function()
   p1.render();
 
   p2.render();
+
+  var line = new SVGLine( {
+    canvas : paper,
+    start : p1,
+    end   : p2
+  } );
+
+  line.render();
  
 });
 </script>
