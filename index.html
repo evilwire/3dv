@@ -7,46 +7,31 @@
    <!-- TODO: Using a JS ADM -->
    <script type='text/javascript' src='js/jquery.js'></script>
    <script type='text/javascript' src='js/raphael.js'></script>
+   <script type='text/javascript' src='js/3dsys.js'></script>
    <script type='text/javascript' src='js/3dv.js'></script>
 
 <script type='text/javascript'>
 $(document).ready( function()
 {
   var canvas = $('.canvas')[0],
-      paper = Raphael(canvas, '100%', '100%' );
 
-  //triangle = paper.path('M10 10 L100 100L190 10Z');
-  c = paper.circle('500px', '280px', 2);
+      paper = Raphael( canvas ),
 
-  /*
-  triangle.attr( { 
-  stroke : 'transparent', 
-  fill   : '#000', 
-  'fill-opacity': '.3' 
-  } );
+      p1 = new SVGPoint( {
+        canvas : paper,
+        x : 1200,
+        y : 375
+      } ),
 
-  var vector = new Vector({ vector: [1, 2, 1] });
-      console.log( vector.azimuthAngle );
-  */
-  c.attr({
-    fill: '#000'
-  });
+      p2 = new SVGPoint( {
+        canvas : paper,
+        x : 100,
+        y : 375
+      } );
 
-  c.mouseover( function()
-  {
-    var anim = Raphael.animation({
-      r: 20
-    }, 100, '<>');
-    c.animate( anim );
-  });
+  p1.render();
 
-  c.mouseout( function()
-  {
-    var anim = Raphael.animation({
-      r: 2
-    }, 100, '<>');
-    c.animate( anim );
-  });
+  p2.render();
  
 });
 </script>

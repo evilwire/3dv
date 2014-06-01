@@ -1,13 +1,12 @@
-(function()
-{
-
-
 var __PointMouseOverStyle = {
-  r : 20,
+  r : 10,
+  fill : '#3ae'
 },
 
 __PointStyle = {
-  r : 2,
+  r : 4,
+  'stroke-width': 0,
+  fill: '#555'
 }
 
 function Camera( params )
@@ -150,12 +149,16 @@ function SVGOutput( params )
 function SVGPoint( params )
 {
   var __canvas = params.canvas,
-  _x = params.x, _y = params.y, 
+  _x = params.x, 
+  _y = params.y, 
   _radius = __PointStyle.r,
   _viewInstance = null,
-  pointObj = {};
+  pointObj = {},
 
   render = function(){
+    console.log( _x );
+    console.log( _y );
+
     _viewInstance = 
       __canvas.circle( _x, _y, _radius );
     _viewInstance.attr( __PointStyle );
@@ -194,5 +197,3 @@ function SVGPoint( params )
   };
   return pointObj;
 }
-
-})();
