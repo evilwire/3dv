@@ -293,6 +293,37 @@ function Matrix( params )
     return new Matrix({ matrix: rows });
   },
 
+  XRotation : function( angle )
+  {
+    var c = Math.cos( angle ),
+        s = Math.sin( angle );
+
+    return new Matrix({ matrix : [[ 1, 0,  0],
+                                  [ 0, c, -s],
+                                  [ 0, s,  c]] });
+  },
+  
+  YRotation : function( angle )
+  {
+    var c = Math.cos( angle ),
+        s = Math.sin( angle );
+
+    return new Matrix({ matrix : [[ c, 0, -s],
+                                  [ 0, 1,  0],
+                                  [ s, 0,  c]] });
+
+  },
+
+  ZRotation : function( angle )
+  {
+    var c = Math.cos( angle ),
+        s = Math.sin( angle );
+
+    return new Matrix({ matrix : [[ c, -s, 0],
+                                  [ s,  c, 0],
+                                  [ 0, 0,  1]] });
+  },
+
   YZRotation : function( yAngle, zAngle )
   {
     var cy = Math.cos( yAngle ),
@@ -302,7 +333,7 @@ function Matrix( params )
 
     rows = [[cy * cz, -sz, -sy * cz],
             [cy * sz,  cz, -sy * sz],
-            [sy     ,   0, cy      ]];
+            [     sy,   0,       cy]];
     return new Matrix( { matrix: rows } );
   },
   
@@ -469,21 +500,3 @@ function Vector( params )
     get cross(){ return cross; }
   };
 }
-/*
-$(document).ready( function( event )
-{
-   var canvas = $('.canvas')[0],
-       paper = Raphael(canvas, '100%', '100%' );
-
-   triangle = paper.path('M10 10 L100 100L190 10Z');
-   triangle.attr( { 
-     stroke : 'transparent', 
-     fill   : '#000', 
-     'fill-opacity': '.3' 
-   } );
-
-   var vector = new Vector({ vector: [1, 2, 1] });
-   console.log( vector.azimuthAngle );
-
-} );
-*/
