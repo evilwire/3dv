@@ -164,6 +164,52 @@ function Matrix( params )
     return new Vector({ vector : row });
   },
 
+  getEntry = function( i, j )
+  {
+    return _matrix[i - 1][j - 1];
+  },
+
+  mult = function( matrix )
+  {
+    return new Matrix({
+      matrix : [[ matrix.getEntry( 1, 1 ) * _matrix[0][0] +
+                  matrix.getEntry( 2, 1 ) * _matrix[0][1] +
+                  matrix.getEntry( 3, 1 ) * _matrix[0][2],
+
+                  matrix.getEntry( 1, 2 ) * _matrix[0][0] +
+                  matrix.getEntry( 2, 2 ) * _matrix[0][1] +
+                  matrix.getEntry( 3, 2 ) * _matrix[0][2],
+
+                  matrix.getEntry( 1, 3 ) * _matrix[0][0] +
+                  matrix.getEntry( 2, 3 ) * _matrix[0][1] +
+                  matrix.getEntry( 3, 3 ) * _matrix[0][2]],
+
+                [ matrix.getEntry( 1, 1 ) * _matrix[1][0] +
+                  matrix.getEntry( 2, 1 ) * _matrix[1][1] +
+                  matrix.getEntry( 3, 1 ) * _matrix[1][2],
+
+                  matrix.getEntry( 1, 2 ) * _matrix[1][0] +
+                  matrix.getEntry( 2, 2 ) * _matrix[1][1] +
+                  matrix.getEntry( 3, 2 ) * _matrix[1][2],
+
+                  matrix.getEntry( 1, 3 ) * _matrix[1][0] +
+                  matrix.getEntry( 2, 3 ) * _matrix[1][1] +
+                  matrix.getEntry( 3, 3 ) * _matrix[1][2]],
+
+                [ matrix.getEntry( 1, 1 ) * _matrix[2][0] +
+                  matrix.getEntry( 2, 1 ) * _matrix[2][1] +
+                  matrix.getEntry( 3, 1 ) * _matrix[2][2],
+
+                  matrix.getEntry( 1, 2 ) * _matrix[2][0] +
+                  matrix.getEntry( 2, 2 ) * _matrix[2][1] +
+                  matrix.getEntry( 3, 2 ) * _matrix[2][2],
+
+                  matrix.getEntry( 1, 3 ) * _matrix[2][0] +
+                  matrix.getEntry( 2, 3 ) * _matrix[2][1] +
+                  matrix.getEntry( 3, 3 ) * _matrix[2][2]]]
+    });
+  },
+
   transpose = function()
   {
     return new Matrix( {
