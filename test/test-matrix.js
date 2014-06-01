@@ -183,7 +183,9 @@
       equal( v1.dot( v2 ), 0, 'v1 dot v2 should be 0' );
       equal( v2.dot( v3 ), 0, 'v2 dot v3 should be 0' );
       equal( v3.dot( v1 ), 0, 'v1 dot v3 should be 0' );
-    }
+    },
+    
+    // rotate z and then y is the same as yz rotation
   };
 
   for( title in testSuites )
