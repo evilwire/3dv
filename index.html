@@ -5,9 +5,50 @@
       Dev Page for 3DV - visualization in 3D
    </title>
    <!-- TODO: Using a JS ADM -->
-   <script src='js/jquery.js'></script>
-   <script src='js/raphael.js'></script>
-   <script src='js/3dv.js'></script>
+   <script type='text/javascript' src='js/jquery.js'></script>
+   <script type='text/javascript' src='js/raphael.js'></script>
+   <script type='text/javascript' src='js/3dv.js'></script>
+
+<script type='text/javascript'>
+$(document).ready( function()
+{
+  var canvas = $('.canvas')[0],
+      paper = Raphael(canvas, '100%', '100%' );
+
+  //triangle = paper.path('M10 10 L100 100L190 10Z');
+  c = paper.circle(500, 280, 2);
+
+  /*
+  triangle.attr( { 
+  stroke : 'transparent', 
+  fill   : '#000', 
+  'fill-opacity': '.3' 
+  } );
+
+  var vector = new Vector({ vector: [1, 2, 1] });
+      console.log( vector.azimuthAngle );
+  */
+  c.attr({
+    fill: '#000'
+  })
+  c.mouseover( function()
+  {
+    var anim = Raphael.animation({
+      r: 20
+    }, 100, '<>');
+    c.animate( anim );
+  });
+
+  c.mouseout( function()
+  {
+    var anim = Raphael.animation({
+      r: 2
+    }, 100, '<>');
+    c.animate( anim );
+  });
+ 
+});
+</script>
 
    <!-- Using link -->
    <link rel='stylesheet' type='css' href='css/spa.css' />

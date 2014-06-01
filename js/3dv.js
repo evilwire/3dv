@@ -308,6 +308,18 @@ function Matrix( params )
   
   Rotation : function( vector, angle )
   {
+    var azimuth = vector.azimuthAngle,
+        elevation = vector.elevationAngle,
+        c = Math.cos( angle ),
+        s = Math.sin( angle );
+
+        return Matrix.YZRotation( elevation, azimuth )
+           .mult( new Matrix({ 
+             matrix : [[ 1, 0,  0],
+                       [ 0, c, -s],
+                       [ 0, s,  c]] } ) )
+           .mult( Matrix.YZRotation( -elevation, -azimuth ) );
+    
   }
 })
 
