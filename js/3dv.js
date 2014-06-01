@@ -171,43 +171,27 @@ function Matrix( params )
 
   mult = function( matrix )
   {
+    var m11 = _matrix[0][0], m12 = _matrix[0][1], m13 = _matrix[0][2],
+        m21 = _matrix[1][0], m22 = _matrix[1][1], m23 = _matrix[1][2],
+        m31 = _matrix[2][0], m32 = _matrix[2][1], m33 = _matrix[2][2],
+
+        n11 = matrix.getEntry(1, 1), n12 = matrix.getEntry(1, 2), 
+          n13 = matrix.getEntry(1, 3),
+        n21 = matrix.getEntry(2, 1), n22 = matrix.getEntry(2, 2), 
+          n23 = matrix.getEntry(2, 3),
+        n31 = matrix.getEntry(3, 1), n32 = matrix.getEntry(3, 2),
+          n33 = matrix.getEntry(3, 3);
+
     return new Matrix({
-      matrix : [[ matrix.getEntry( 1, 1 ) * _matrix[0][0] +
-                  matrix.getEntry( 2, 1 ) * _matrix[0][1] +
-                  matrix.getEntry( 3, 1 ) * _matrix[0][2],
-
-                  matrix.getEntry( 1, 2 ) * _matrix[0][0] +
-                  matrix.getEntry( 2, 2 ) * _matrix[0][1] +
-                  matrix.getEntry( 3, 2 ) * _matrix[0][2],
-
-                  matrix.getEntry( 1, 3 ) * _matrix[0][0] +
-                  matrix.getEntry( 2, 3 ) * _matrix[0][1] +
-                  matrix.getEntry( 3, 3 ) * _matrix[0][2]],
-
-                [ matrix.getEntry( 1, 1 ) * _matrix[1][0] +
-                  matrix.getEntry( 2, 1 ) * _matrix[1][1] +
-                  matrix.getEntry( 3, 1 ) * _matrix[1][2],
-
-                  matrix.getEntry( 1, 2 ) * _matrix[1][0] +
-                  matrix.getEntry( 2, 2 ) * _matrix[1][1] +
-                  matrix.getEntry( 3, 2 ) * _matrix[1][2],
-
-                  matrix.getEntry( 1, 3 ) * _matrix[1][0] +
-                  matrix.getEntry( 2, 3 ) * _matrix[1][1] +
-                  matrix.getEntry( 3, 3 ) * _matrix[1][2]],
-
-                [ matrix.getEntry( 1, 1 ) * _matrix[2][0] +
-                  matrix.getEntry( 2, 1 ) * _matrix[2][1] +
-                  matrix.getEntry( 3, 1 ) * _matrix[2][2],
-
-                  matrix.getEntry( 1, 2 ) * _matrix[2][0] +
-                  matrix.getEntry( 2, 2 ) * _matrix[2][1] +
-                  matrix.getEntry( 3, 2 ) * _matrix[2][2],
-
-                  matrix.getEntry( 1, 3 ) * _matrix[2][0] +
-                  matrix.getEntry( 2, 3 ) * _matrix[2][1] +
-                  matrix.getEntry( 3, 3 ) * _matrix[2][2]]]
-    });
+      matrix : [[ (m11 * n11) + (m12 * n21) + (m13 * n31),
+                  (m11 * n12) + (m12 * n22) + (m13 * n32),
+                  (m11 * n13) + (m12 * n23) + (m13 * n33)],
+                [ (m21 * n11) + (m22 * n21) + (m23 * n31),
+                  (m21 * n12) + (m22 * n22) + (m23 * n32),
+                  (m21 * n13) + (m22 * n23) + (m23 * n33)],
+                [ (m31 * n11) + (m32 * n21) + (m33 * n31),
+                  (m31 * n12) + (m32 * n22) + (m33 * n32),
+                  (m31 * n13) + (m32 * n23) + (m33 * n33)]] });
   },
 
   transpose = function()
@@ -285,39 +269,40 @@ function Matrix( params )
         u11 = u1 * u1, u12 = u1 * u2, u13 = u1 * u3,
         u22 = u2 * u2, u23 = u2 * u3, u33 = u3 * u3,
 
-
-
     rows = [[ 1 - u11, -u12, -u13 ],
             [ -u12, 1 - u22, -u23 ],
             [ -u13, -u23, 1 - u33 ]];
     return new Matrix({ matrix: rows });
   },
 
-  XRotation : function( angle )
+  XRotation : function( angle, orientation )
   {
     var c = Math.cos( angle ),
-        s = Math.sin( angle );
+        s = (orientation == 'ccw')? 
+          Math.sin( angle ) : -Math.sin( angle );
 
     return new Matrix({ matrix : [[ 1, 0,  0],
                                   [ 0, c, -s],
                                   [ 0, s,  c]] });
   },
   
-  YRotation : function( angle )
+  YRotation : function( angle, orientation )
   {
     var c = Math.cos( angle ),
-        s = Math.sin( angle );
+        s = (orientation == 'ccw')? 
+          Math.sin( angle ) : -Math.sin( angle );
+
 
     return new Matrix({ matrix : [[ c, 0, -s],
                                   [ 0, 1,  0],
                                   [ s, 0,  c]] });
-
   },
 
-  ZRotation : function( angle )
+  ZRotation : function( angle, orientation )
   {
     var c = Math.cos( angle ),
-        s = Math.sin( angle );
+        s = (orientation == 'ccw')? 
+          Math.sin( angle ) : -Math.sin( angle );
 
     return new Matrix({ matrix : [[ c, -s, 0],
                                   [ s,  c, 0],
@@ -350,9 +335,8 @@ function Matrix( params )
                        [ 0, c, -s],
                        [ 0, s,  c]] } ) )
            .mult( Matrix.YZRotation( -elevation, -azimuth ) );
-    
   }
-})
+});
 
 /**
  * @convention: everything is rounded at 10 precisions.
