@@ -256,7 +256,7 @@ function Matrix( params )
 
     rows = [[cy * cz, -sz, -sy * cz],
             [cy * sz,  cz, -sy * sz],
-            [sy     ,   0, cz      ]];
+            [sy     ,   0, cy      ]];
     return new Matrix( { matrix: rows } );
   },
   
