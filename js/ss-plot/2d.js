@@ -1,8 +1,23 @@
 function FlatPlot( params )
 {
-  var __canvas = params.canvas;
+  var __canvas = params.canvas,
 
-  var plotAxes = function()
+  _leftEdge = params.leftEdge,
+
+  _width = params.width,
+
+  _height = params.height,
+
+  _hTics = params.hTics,
+
+  _vTics = params.vTics,
+
+  plotAxes = function()
   {
-  }
+  },
+
+  flatPlot = {};
+
+
+  return flatPlot;
 }

@@ -13,34 +13,7 @@
 <script type='text/javascript'>
 $(document).ready( function()
 {
-  var canvas = $('.canvas')[0],
-
-      paper = Raphael( canvas ),
-
-      p1 = new SVGPoint( {
-        canvas : paper,
-        x : 1200,
-        y : 375
-      } ),
-
-      p2 = new SVGPoint( {
-        canvas : paper,
-        x : 100,
-        y : 375
-      } );
-
-  p1.render();
-
-  p2.render();
-
-  var line = new SVGLine( {
-    canvas : paper,
-    start : p1,
-    end   : p2
-  } );
-
-  line.render();
- 
+  // layout an axis
 });
 </script>
 

@@ -163,12 +163,13 @@ function SVGPoint( params )
   _x = params.x, 
   _y = params.y, 
 
-  _pointStyle = (_pointStyle = params.style)? 
-    _pointStyle : __PointStyle,
+  _pointStyle = 
+    $.extend( {}, __PointStyle, 
+      params.style ),
 
   _pointHoverStyle = 
-    (_pointHoverStyle = params.hoverStyle)? 
-    _pointHoverStyle : __PointHoverStyle,
+    $.extend( {}, __PointHoverStyle, 
+      params.hoverStyle ),
 
   _radius = _pointStyle.r,
 
@@ -231,12 +232,13 @@ function SVGLine( params )
   _end = params.end, 
   _viewInstance = null,
 
-  _lineStyle = (_lineStyle = params.style)? 
-    _lineStyle : __LineStyle,
+  _lineStyle = 
+    $.extend( {}, __LineStyle,
+      params.style ),
 
   _lineHoverStyle = 
-    (_lineHoverStyle = params.hoverStyle)? 
-    _lineHoverStyle : __LineHoverStyle,
+    $.extend( {}, __LineHoverStyle,
+      params.hoverStyle ),
   
   render = function(){
     var pathStr = 'M' + _start.toString() + 'L' + _end.toString();
