@@ -1,23 +1,75 @@
+/**
+ * Plot
+ */
 function FlatPlot( params )
 {
-  var __canvas = params.canvas,
+  var _canvas = params.canvas,
 
-  _leftEdge = params.leftEdge,
+  _left = params.left,
 
-  _width = params.width,
+  width = function(){ return _canvas.width; },
 
-  _height = params.height,
+  height = function(){ return _canvas.height; },
 
-  _hTics = params.hTics,
-
-  _vTics = params.vTics,
-
-  plotAxes = function()
+  initialize = function( initParams )
   {
+    // draw the axes and scales and labels
   },
 
-  flatPlot = {};
+  flatPlotObj = {};
 
 
-  return flatPlot;
+  if( Object.defineProperties )
+  {
+    Object.defineProperties( flatPlotObj,
+    {
+      width : { get : width },
+      height : { get : height }
+    } );
+    return lineObj;
+  }
+  
+  flatPlotObj = {
+    get width(){ return width; },
+    get height(){ return height; }
+  };
+
+  return lineObj;
+}
+
+/**
+ * Axes Label
+ *
+ */
+function FlatLabel( params )
+{
+  var _Label = params.label,
+
+  _canvas = params.canvas,
+
+  render = function()
+  {
+  };
+}
+
+function FlatScale( params )
+{
+  var _hscale = params.hscale,
+
+  _vscale = params.vscale,
+
+  hscale = function()
+  {
+
+  },
+
+  vscale = function()
+  {
+
+  },
+
+  rescale = function( factor )
+  {
+
+  };
 }
