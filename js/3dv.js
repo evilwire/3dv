@@ -353,5 +353,4 @@ function SVGText( params )
   };
 
   return lineObj;
-
 }

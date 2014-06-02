@@ -5,11 +5,30 @@ function FlatPlot( params )
 {
   var _canvas = params.canvas,
 
+  _scale = params.scale,
+
   _left = params.left,
+
+  __eventHandlers = {},
 
   width = function(){ return _canvas.width; },
 
   height = function(){ return _canvas.height; },
+
+  /**
+   * Allowed events:
+   * 
+   * - datachange
+   * - axischange
+   */
+  on = function( eventName, eventHandler ){ 
+
+  },
+
+  off = function( eventName, eventHandler )
+  {
+
+  },
 
   initialize = function( initParams )
   {
@@ -17,7 +36,6 @@ function FlatPlot( params )
   },
 
   flatPlotObj = {};
-
 
   if( Object.defineProperties )
   {
@@ -40,18 +58,25 @@ function FlatPlot( params )
 /**
  * Axes Label
  *
+ * TODO: create a subscription to the change events
+ *       on the flatplot, and redraw
  */
 function FlatLabel( params )
 {
-  var _Label = params.label,
+  var _scale = params.scale,
 
   _canvas = params.canvas,
 
   render = function()
   {
+
   };
 }
 
+/**
+ * TODO: create a subscription to the change events
+ *       on the flatplot
+ */
 function FlatScale( params )
 {
   var _hscale = params.hscale,
