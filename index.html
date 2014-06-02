@@ -17,16 +17,16 @@
 $(document).ready( function()
 {
   // layout an axis
-  var paper = Raphael($('.canvas')[0]);
+  var paper = Raphael($('.canvas')[0]),
   
-  text = paper.text( 100, 20, 'Hello world' );
-  text.attr({
-    'font-family' : 'sans serif',
-    'font-size' : 20,
-    'stroke-width' : .2
+  textLabel = new SVGText({
+    canvas : paper,
+    text : '20',
+    x    : 10,
+    y    : 20, 
   });
-  console.log( text.getBBox() );
 
+  textLabel.render();
 });
 </script>
 

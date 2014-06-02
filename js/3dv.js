@@ -18,6 +18,19 @@ __LineStyle = {
 
 __LineHoverStyle = {
   'stroke-opacity' : 1, 
+},
+
+__TextStyle = {
+    'font-family' : 'open sans',
+    'font-size' : 12,
+    'font-weight' : '300',
+    'opacity' : 1
+},
+
+__TextHoverStyle = {
+  'font-weight' : '400',
+  'font-size' : 15,
+  'opacity' : .5,
 }
 
 function Camera( params )
@@ -242,9 +255,7 @@ function SVGLine( params )
   
   render = function(){
     var pathStr = 'M' + _start.toString() + 'L' + _end.toString();
-    console.log( pathStr );
     _viewInstance = __canvas.path( pathStr );
-
     _viewInstance.attr( _lineStyle );
 
     _viewInstance.mouseover( function( event )
@@ -283,4 +294,64 @@ function SVGLine( params )
   };
 
   return lineObj;
+}
+
+function SVGText( params )
+{
+  var __canvas = params.canvas,
+  _x = params.x,
+  _y = params.y,
+  _text = params.text,
+  _viewInstance = null,
+
+  _textStyle = 
+    $.extend( {}, __TextStyle,
+      params.style ),
+
+  _textHoverStyle = 
+    $.extend( {}, __TextHoverStyle,
+      params.hoverStyle ),
+  
+  render = function(){
+    _viewInstance = __canvas.text( _x, _y, _text );
+
+    _viewInstance.attr( _textStyle );
+
+    _viewInstance.mouseover( function( event )
+    {
+      var anim = Raphael.animation( 
+        _textHoverStyle,
+        100, '<>');
+
+      _viewInstance.animate( anim );
+    });
+
+    _viewInstance.mouseout( function( event )
+    {
+      var anim = Raphael.animation( 
+        _textStyle, 100, '<>');
+
+      _viewInstance.animate( anim );
+    });
+  },
+
+  lineObj = {};
+
+  if( Object.defineProperties )
+  {
+    Object.defineProperties( lineObj,
+    {
+      viewInstance : { get : function(){ return _viewInstance; } },
+      render : { get : function(){ return render; } }
+    } );
+    return lineObj;
+  }
+  
+  lineObj = {
+    get viewInstance(){ return _viewInstance; },
+    get render(){ return render; }
+  };
+
+  return lineObj;
+
 }
