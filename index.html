@@ -16,8 +16,20 @@
 <script type='text/javascript'>
 
 $(document).ready( function(){
-  var paper = Raphael($('.canvas')[0]);
+  var paper = Raphael($('.canvas')[0]),
 
+  scale = new FlatScale({
+    hscale : 1,
+    vscale : 1,
+    hticks : 20,
+    vticks : 20
+  } );
+
+  flatPlot = new FlatPlot({
+    canvas : paper,
+    scale : scale,
+    left : 10
+  });
 });
 
 </script>
