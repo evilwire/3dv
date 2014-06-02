@@ -22,15 +22,36 @@ function FlatPlot( params )
    * - axischange
    */
   on = function( eventName, eventHandler ){ 
-
+    __eventHandlers[eventName].push( eventHandler );
   },
 
   off = function( eventName, eventHandler )
   {
+    var handlers = __eventHandlers[ eventName ],
+        index = handlers.length;
 
+    while( --index >= 0 )
+    {
+      if( handlers[ index ] == eventHandler )
+      {
+        handlers.splice( index, 1);
+        return eventHandler;
+      }
+    }
   },
 
-  initialize = function( initParams )
+  trigger = function( eventName )
+  {
+    var handlers = __eventHandlers[eventName],
+    var index = handlers.length;
+    while( --index >= 0 )
+    {
+      var eventArr = {};
+      handlers[ index ].call( flatPlotObj, eventArr );
+    }
+  },
+
+  setup = function( initParams )
   {
     // draw the axes and scales and labels
   },
