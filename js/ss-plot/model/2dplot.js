@@ -13,10 +13,11 @@
 
       while( --index > 0 )
       {
+        var _this = this;
         dependents[index].on('change', function( eventData )
         {
-          this.trigger('change', this );
-        }
+          _this.trigger('change', _this );
+        });
       }
     }
   });
