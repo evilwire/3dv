@@ -63,42 +63,30 @@ function Camera( params )
 
   // if we have Object.defineProperties - latest support for
   // object initialization
-  if( Object.defineProperties )
-  {
-    var cameraObj = {};
+  var cameraObj = {};
 
-    // initialize a using defineProperties
-    Object.defineProperties( cameraObj, {
-      // accessors:
-      orientation : { get : orientation },
-      position : { get : position },
-      apperture : { get : apperture },
+  // initialize a using defineProperties
+  Object.defineProperties( cameraObj, {
+    // accessors:
+    orientation : { get : orientation },
+    position : { get : position },
+    apperture : { get : apperture },
 
-      // mutators
-      move : { 
-        get : function(){ 
-          return move;
-        } 
-      },
+    // mutators
+    move : { 
+      get : function(){ 
+        return move;
+      } 
+    },
 
-      rotate : { 
-        get : function(){ 
-          return rotate; 
-        } 
-      }
-    } );
+    rotate : { 
+      get : function(){ 
+        return rotate; 
+      } 
+    }
+  } );
 
-    return cameraObj;
-  }
-
-  // otherwise, do some set/get 
-  return {
-    get orientation(){ return _orientation; },
-    get position(){ return _position; },
-    get apperture(){ return _apperture; },
-    get move(){ return move; },
-    get rotate(){ return rotate; }
-  };
+  return cameraObj;
 }
 
 function Orientation( params )
@@ -118,24 +106,15 @@ function Orientation( params )
           vertical : newVertical
         } );
       };
-  if( Object.defineProperties )
-  {
-    var orientationObj = {};
-    Object.defineProperties( orientationObj, {
-      direction : { get : direction },
-      vertical : { get : vertical },
-      horizontal : { get : horizontal },
-      rotate : { get : function(){ return rotate; } }
-    } );
-    return orientationObj;
-  }
 
-  return {
-    get direction(){ return _direction; },
-    get vertical(){ return _vertical; },
-    get horizontal(){ return _horizontal; },
-    get rotate(){ return rotate; }
-  };
+  var orientationObj = {};
+  Object.defineProperties( orientationObj, {
+    direction : { get : direction },
+    vertical : { get : vertical },
+    horizontal : { get : horizontal },
+    rotate : { get : function(){ return rotate; } }
+  } );
+  return orientationObj;
 }
 
 /**
@@ -219,22 +198,12 @@ function SVGPoint( params )
     });
   };
   
-  if( Object.defineProperties )
+  Object.defineProperties( pointObj,
   {
-    Object.defineProperties( pointObj,
-    {
-      viewInstance : { get : function(){ return _viewInstance; } },
-      render : { get : function(){ return render; } },
-      toString : { get : function(){ return toString; } }
-    } );
-    return pointObj;
-  }
-  
-  pointObj = {
-    get viewInstance(){ return _viewInstance; },
-    get render(){ return render; },
-    get toString(){ return toString; }
-  };
+    viewInstance : { get : function(){ return _viewInstance; } },
+    render : { get : function(){ return render; } },
+    toString : { get : function(){ return toString; } }
+  } );
   return pointObj;
 }
 
@@ -278,23 +247,11 @@ function SVGLine( params )
 
   lineObj = {};
 
-  console.log( _lineStyle );
-
-  if( Object.defineProperties )
+  Object.defineProperties( lineObj,
   {
-    Object.defineProperties( lineObj,
-    {
-      viewInstance : { get : function(){ return _viewInstance; } },
-      render : { get : function(){ return render; } }
-    } );
-    return lineObj;
-  }
-  
-  lineObj = {
-    get viewInstance(){ return _viewInstance; },
-    get render(){ return render; }
-  };
-
+    viewInstance : { get : function(){ return _viewInstance; } },
+    render : { get : function(){ return render; } }
+  } );
   return lineObj;
 }
 
@@ -339,20 +296,10 @@ function SVGText( params )
 
   lineObj = {};
 
-  if( Object.defineProperties )
+  Object.defineProperties( lineObj,
   {
-    Object.defineProperties( lineObj,
-    {
-      viewInstance : { get : function(){ return _viewInstance; } },
-      render : { get : function(){ return render; } }
-    } );
-    return lineObj;
-  }
-  
-  lineObj = {
-    get viewInstance(){ return _viewInstance; },
-    get render(){ return render; }
-  };
-
+    viewInstance : { get : function(){ return _viewInstance; } },
+    render : { get : function(){ return render; } }
+  } );
   return lineObj;
 }

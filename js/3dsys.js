@@ -1,44 +1,3 @@
-(function(){
-  function decimalAdjust(type, value, exp) {
-    // If the exp is undefined or zero...
-    if (typeof exp === 'undefined' || +exp === 0) {
-      return Math[type](value);
-    }
-    value = +value;
-    exp = +exp;
-    // If the value is not a number or the exp is not an integer...
-    if (isNaN(value) || 
-       !(typeof exp === 'number' && exp % 1 === 0)) {
-      return NaN;
-    }
-    // Shift
-    value = value.toString().split('e');
-    value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
-    // Shift back
-    value = value.toString().split('e');
-    return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
-  }
-
-  // Decimal round
-  if (!Math.round10) {
-    Math.round10 = function(value, exp) {
-      return decimalAdjust('round', value, exp);
-    };
-  }
-  // Decimal floor
-  if (!Math.floor10) {
-    Math.floor10 = function(value, exp) {
-      return decimalAdjust('floor', value, exp);
-    };
-  }
-  // Decimal ceil
-  if (!Math.ceil10) {
-    Math.ceil10 = function(value, exp) {
-      return decimalAdjust('ceil', value, exp);
-    };
-  }
-})();
-
 function Matrix( params )
 {
   var _matrix = params.matrix,
@@ -98,20 +57,12 @@ function Matrix( params )
     } );
   }
 
-  if( Object.defineProperties )
-  {
-    var matrixObj = {};
-    Object.defineProperties( matrixObj, {
-      actOn : { get : function(){ return actOn; } },
-      transpose : { get : function(){ return transpose; } }
-    } );
-    return matrixObj;
-  }
-
-  return {
-    get actOn(){ return actOn; },
-    get transpose(){ return transpose; }
-  };
+  var matrixObj = {};
+  Object.defineProperties( matrixObj, {
+    actOn : { get : function(){ return actOn; } },
+    transpose : { get : function(){ return transpose; } }
+  } );
+  return matrixObj;
 }
 
 (function( MatrixMethods )
@@ -350,37 +301,20 @@ function Vector( params )
       } );
   };
 
-  if( Object.defineProperties )
+  var vectorObj = {};
+  Object.defineProperties( vectorObj,
   {
-    var vectorObj = {};
-    Object.defineProperties( vectorObj,
-    {
-      index : { get : function(){ return index; } },
-      length : { get : length },
-      azimuthAngle : { get : azimuthAngle },
-      elevationAngle : { get : elevationAngle },
-      isZero : { get : function(){ return isZero; } },
-      getUnit : { get : function(){ return getUnit; } },
-      scale : { get : function(){ return scale; } },
-      add : { get : function(){ return add; } },
-      dot : { get : function(){ return dot; } },
-      approxEq : { get : function(){ return approxEq; } },
-      cross : { get : function(){ return cross; } },
-    } );
-    return vectorObj;
-  }
-
-  return {
-    get index(){ return index; },
-    get length(){ return _length },
-    get azimuthAngle() { return azimuthAngle(); },
-    get elevationAngle() { return elevationAngle(); },
-    get isZero() { return isZero() },
-    get getUnit() { return getUnit() },
-    get scale(){ return scale; },
-    get add(){ return add; },
-    get dot(){ return dot; },
-    get approxEq(){ return approxEq; },
-    get cross(){ return cross; }
-  };
+    index : { get : function(){ return index; } },
+    length : { get : length },
+    azimuthAngle : { get : azimuthAngle },
+    elevationAngle : { get : elevationAngle },
+    isZero : { get : function(){ return isZero; } },
+    getUnit : { get : function(){ return getUnit; } },
+    scale : { get : function(){ return scale; } },
+    add : { get : function(){ return add; } },
+    dot : { get : function(){ return dot; } },
+    approxEq : { get : function(){ return approxEq; } },
+    cross : { get : function(){ return cross; } },
+  } );
+  return vectorObj;
 }

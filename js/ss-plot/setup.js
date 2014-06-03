@@ -1,1 +1,6 @@
 var SSPlot = SSPlot || {};
+
+(function()
+{
+
+})();
