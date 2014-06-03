@@ -53,7 +53,21 @@
       this.get('scale').on( 'change',
         function( event )
         {
-          _this.trigger('change', {} );
+          $.extend( event, {
+            type  : 'scale',
+            target : this.get('scale')
+          });
+          _this.trigger('change', event );
+        } );
+
+      this.get('range').on( 'change',
+        function( event )
+        {
+          $.extend( event, {
+            type  : 'range',
+            target : this.get('range')
+          });
+          _this.trigger('change', event );
         } );
       
       Object.defineProperties( _this, {

@@ -8,7 +8,10 @@
 
     initialize : function()
     {
-      console.log( this );
+      // redraw when the axis update
+      this.model.on( 'change', function()
+      {
+      } );
     },
 
     render : function()

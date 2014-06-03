@@ -13,6 +13,13 @@ $(document).ready( function(){
     range : xRange
   });
 
+  xScale.on( 'change', function( event )
+  {
+    console.log( event );
+  } );
+
+  xScale.set({ type : 'relative' });
+
   xAxisView = new SSPlot.View.XYAxis({
     canvas : paper,
     model : xAxis
