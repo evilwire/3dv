@@ -33,9 +33,16 @@
     },
 
     initilize : function(){
-      var initMethod = ScaleInitMethods[this.get('type')],
-      scaleAttr = initMethods.call( this, this.attributes )
+      var params = this.attributes;
+      initMethod = ScaleInitMethods[this.get('type')],
+      scaleAttr = initMethods.call( this, this.attributes );
       this.set(scaleAttr, { silent : true });
+    },
+
+    rescale : function( params ){
+      var initMethod = ScaleInitMethods[ params.type ];
+      scaleAttr = initMethods.call( this, params );
+      this.set( newScaleAttr );
     }
   });
 })(Backbone);
