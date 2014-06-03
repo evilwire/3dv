@@ -72,16 +72,20 @@
 
   extend = function( svgSetup )
   {
-    var params = $.extend( null, defaults, svgSetup );
+    var defaults = $.extend( null, svgSetup.defaults, {}),
+        initialize = svgSetup.initialize || function(){},
+        events = $.extend(null, svgSetup.events, {});
+
+    delete svgSetup['defaults'];
+    delete svgSetup['events'];
 
     return function( params )
     {
       var svgBase = new SSPlot.View.SVGView( params ),
-
-      events = svgSetup.events || {};
+          params = $.extend( null, defaults, svgSetup );
 
       // call initializer
-      svgSetup.initialize.call( svgBase );
+      initialize.call( svgBase );
 
       // setup events
       for( eventLabel in events )
@@ -90,6 +94,14 @@
                     events[eventLabel] );
 
       // extend methods
+      for( methodName in svgSetup )
+        Object.defineProperty( svgBase, methodName,
+        { 
+          get : function()
+          { 
+            return svgSetup[ methodName ]; 
+          }
+        });
     }
   },
 
