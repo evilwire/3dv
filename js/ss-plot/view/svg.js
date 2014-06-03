@@ -28,7 +28,7 @@
               == 'undefined' )
             return null;
 
-          return svgView.attributes[ propName ];
+          return svgView.attributes[ 'model' ];
         }
       },
 
@@ -98,7 +98,7 @@
 
     return function( params )
     {
-      var svgBase = new SSPlot.View.SVGView( params ),
+      var svgBase = new SSPlot.SVGView( params ),
           params = $.extend( null, defaults, svgSetup );
 
       // call initializer
@@ -122,7 +122,6 @@
     }
   },
 
-  SSPlot.SVGView = {};
   Object.defineProperties( SSPlot.SVGView, {
     extend : { get : function(){ return extend; } }
   });

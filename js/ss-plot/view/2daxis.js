@@ -16,5 +16,4 @@
     },
   } );
 
-  console.log( SSPlot.View );
 })( Raphael )
