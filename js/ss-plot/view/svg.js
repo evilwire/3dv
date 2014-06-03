@@ -21,12 +21,23 @@
       paper : { get : function(){ return paper; } },
       svg : { get : function(){ return svg; } },
 
+      model : {
+        get : function()
+        {
+          if( typeof svgView.attributes[ 'model' ] 
+              == 'undefined' )
+            return null;
+
+          return svgView.attributes[ propName ];
+        }
+      },
+
       get : { 
         get : function(){
           return function( propName )
           {
             if( typeof svgView.attributes[ propName ] 
-              === 'undefined' )
+              == 'undefined' )
               return null;
 
             return svgView.attributes[ propName ];
