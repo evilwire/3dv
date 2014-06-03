@@ -13,8 +13,7 @@ $(document).ready( function(){
   st.attr({ fill : 'black',
             stroke : 'rgba(0, 0, 0, .3)',
             'stroke-width' : 1 });
-
-  console.log( st );
+  
 });
 
 })();

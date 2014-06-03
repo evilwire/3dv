@@ -1,8 +1,6 @@
 (function()
 {
-  var defaults = {},
-
-  SSPlot.View.SVGView = function( params )
+  SSPlot.SVGView = function( params )
   {
     var svgView = {},
 
@@ -10,7 +8,7 @@
 
     el = $el[0],
 
-    paper  = Raphael( el ),
+    paper = Raphael( el ),
 
     svg = paper.set();
 
@@ -53,7 +51,7 @@
     return svgView;
   },
 
-  setupEvent = function( _this, eventLabel, method )
+  __setupEvent = function( _this, eventLabel, method )
   {
     var label = eventLabel.split(' '),
         obj = label[0],
@@ -89,7 +87,7 @@
 
       // setup events
       for( eventLabel in events )
-        setupEvent( svgBase, 
+        __setupEvent( svgBase, 
                     eventLabel, 
                     events[eventLabel] );
 
@@ -106,8 +104,8 @@
   },
 
   SSPlot.SVGView = {};
-  Object.defineProperties({
-    extend : function(){ return extend; }
+  Object.defineProperties( SSPlot.SVGView, {
+    extend : { get : function(){ return extend; } }
   });
 
 })(Raphael);
