@@ -10,22 +10,22 @@ $(document).ready( function(){
 
   xAxis = new SSPlot.Model.Axis({
     scale : xScale,
-    range : xRange
+    range : xRange,
+    type  : 'horizontal',
+    label : 'p',
   });
 
-  xScale.on( 'change', function( event )
-  {
-    console.log( event );
-  } );
-
-  xScale.set({ type : 'relative' });
-
-  xAxisView = new SSPlot.View.XYAxis({
-    canvas : paper,
-    model : xAxis
-
+  var xAxisView = new SSPlot.View.XYAxis({
+    canvas : $('.canvas'),
+    model : xAxis,
+    size : 500,
+    midpoint : {
+      x : 300,
+      y : 500
+    }
   });
 
+  xAxisView.render();
 
 });
 

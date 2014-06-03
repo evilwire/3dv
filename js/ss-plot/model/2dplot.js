@@ -9,16 +9,52 @@
           this.get('yrange'),
           this.get('data') ],
 
-      index = dependents.length;
+      _this = this;
 
-      while( --index > 0 )
+      this.get('xscale').on('change', function( event )
       {
-        var _this = this;
-        dependents[index].on('change', function( eventData )
-        {
-          _this.trigger('change', _this );
+        $.extend(event, {
+          type   : 'xscale',
+          target : this.get('xscale')
         });
-      }
+        _this.trigger('change', event );
+      });
+
+      this.get('yscale').on('change', function( event )
+      {
+        $.extend(event, {
+          type   : 'yscale',
+          target : this.get('yscale')
+        });
+        _this.trigger('change', event );
+      });
+
+      this.get('xrange').on('change', function( event )
+      {
+        $.extend(event, {
+          type   : 'xrange',
+          target : this.get('xrange')
+        });
+        _this.trigger('change', event );
+      });
+
+      this.get('yrange').on('change', function( event )
+      {
+        $.extend(event, {
+          type   : 'yrange',
+          target : this.get('yrange')
+        });
+        _this.trigger('change', event );
+      });
+
+      this.get('data').on('change', function( event )
+      {
+        $.extend(event, {
+          type   : 'data',
+          target : this.get('data')
+        });
+        _this.trigger('change', event );
+      });
     }
   });
 })(Backbone);

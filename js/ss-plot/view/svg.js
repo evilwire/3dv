@@ -119,6 +119,8 @@
             return svgSetup[ methodName ]; 
           }
         });
+
+      return svgBase;
     }
   },
 
