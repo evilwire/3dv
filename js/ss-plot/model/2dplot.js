@@ -1,48 +1,48 @@
 (function(Backbone)
 {
-  SSPlot.XYPlot = Backbone.Model.extend({
+  SSPlot.Model.XYPlot = Backbone.Model.extend({
     initialize : function()
     {
-      var dependents = [ this.get('xscale'),
-          this.get('yscale'),
-          this.get('xrange'),
-          this.get('yrange'),
+      var dependents = [ this.get('hscale'),
+          this.get('vscale'),
+          this.get('hrange'),
+          this.get('vrange'),
           this.get('data') ],
 
       _this = this;
 
-      this.get('xscale').on('change', function( event )
+      this.get('hscale').on('change', function( event )
       {
         $.extend(event, {
-          type   : 'xscale',
-          target : this.get('xscale')
+          type   : 'hscale',
+          target : this.get('hscale')
         });
         _this.trigger('change', event );
       });
 
-      this.get('yscale').on('change', function( event )
+      this.get('vscale').on('change', function( event )
       {
         $.extend(event, {
-          type   : 'yscale',
-          target : this.get('yscale')
+          type   : 'vscale',
+          target : this.get('vscale')
         });
         _this.trigger('change', event );
       });
 
-      this.get('xrange').on('change', function( event )
+      this.get('hrange').on('change', function( event )
       {
         $.extend(event, {
-          type   : 'xrange',
-          target : this.get('xrange')
+          type   : 'hrange',
+          target : this.get('hrange')
         });
         _this.trigger('change', event );
       });
 
-      this.get('yrange').on('change', function( event )
+      this.get('vrange').on('change', function( event )
       {
         $.extend(event, {
-          type   : 'yrange',
-          target : this.get('yrange')
+          type   : 'vrange',
+          target : this.get('vrange')
         });
         _this.trigger('change', event );
       });
@@ -55,6 +55,6 @@
         });
         _this.trigger('change', event );
       });
-    }
+    },
   });
 })(Backbone);
