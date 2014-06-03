@@ -8,6 +8,7 @@
 
     initialize : function()
     {
+      console.log( this.model );
     },
 
     render : function()
@@ -15,4 +16,5 @@
     },
   } );
 
+  console.log( SSPlot.View );
 })( Raphael )
