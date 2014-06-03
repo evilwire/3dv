@@ -278,6 +278,8 @@ function SVGLine( params )
 
   lineObj = {};
 
+  console.log( _lineStyle );
+
   if( Object.defineProperties )
   {
     Object.defineProperties( lineObj,

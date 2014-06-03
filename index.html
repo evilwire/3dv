@@ -8,28 +8,59 @@
          rel='stylesheet' type='text/css'>
    <!-- TODO: Using a JS ADM -->
    <script type='text/javascript' src='js/jquery.js'></script>
+   <script type='text/javascript' src='js/backbone.js'></script>
    <script type='text/javascript' src='js/raphael.js'></script>
    <script type='text/javascript' src='js/3dsys.js'></script>
    <script type='text/javascript' src='js/3dv.js'></script>
-   <script type='text/javascript' src='js/ss-plot/2d.js'></script>
-
 <script type='text/javascript'>
 
 $(document).ready( function(){
-  var paper = Raphael($('.canvas')[0]),
-
-  scale = new FlatScale({
-    hscale : 1,
-    vscale : 1,
-    hticks : 20,
-    vticks : 20
-  } );
-
-  flatPlot = new FlatPlot({
+  var paper = Raphael($('.canvas')[0]); 
+  
+  // draw the axes
+  var topLeft = new SVGPoint({
     canvas : paper,
-    scale : scale,
-    left : 10
+    x : 40,
+    y : 40
   });
+
+  var bottomLeft = new SVGPoint({
+    canvas : paper,
+    x : 40,
+    y : paper.height - 40
+  });
+
+  var bottomRight = new SVGPoint({
+    canvas : paper,
+    x : paper.width - 40,
+    y : paper.height - 40,
+  });
+
+  //topLeft.render();
+  //bottomLeft.render();
+  //bottomRight.render();
+
+  var leftYAxis = new SVGLine({
+    canvas : paper,
+    start : topLeft,
+    end : bottomLeft
+  });
+
+  var bottomXAxis = new SVGLine({
+    canvas : paper,
+    start : bottomLeft,
+    end : bottomRight,
+    style : {
+      'stroke-dasharray' : '',
+      'stroke' : '#000',
+      'stroke-opacity' : .5,
+      'stroke-width' : 1
+    }
+  });
+
+  leftYAxis.render();
+  bottomXAxis.render();
+
 });
 
 </script>
