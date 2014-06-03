@@ -14,7 +14,8 @@
 
     svgView.attributes = params;
 
-    Object.defineProperties( svgView, {
+    Object.defineProperties( svgView, 
+    {
       $el : { get : function(){ return $el; } },
       el : { get : function(){ return el; } },
       paper : { get : function(){ return paper; } },
@@ -34,16 +35,23 @@
       },
 
       find : {
-        get : function( element )
+        get : function()
         {
-          var index = svgView.svg.items.length;
-          while( --index >= 0 )
+          return function( element )
           {
-            if( svgView.node === element )
-              return svgView;
-          }
+            if( typeof element == 'string' )
+              element = $el.find( element )[0] || false;
 
-          return false;
+            if( !element ) return false;
+
+            var index = svgView.svg.items.length;
+            while( --index >= 0 )
+            {
+              if( svgView.node === element )
+                return svgView;
+            }
+            return false;
+          }
         }
       }
     });
