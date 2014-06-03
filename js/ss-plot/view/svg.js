@@ -4,10 +4,24 @@
 
   SSPlot.View.SVGView = function( params )
   {
-    var svgView = {};
+    var svgView = {},
+
+    $el = $(params.canvas) || $('<div></div>'),
+
+    el = $el[0],
+
+    paper  = Raphael( el ),
+
+    svg = paper.set();
+
     svgView.attributes = params;
 
     Object.defineProperties( svgView, {
+      $el : { get : function(){ return $el; } },
+      el : { get : function(){ return el; } },
+      paper : { get : function(){ return paper; } },
+      svg : { get : function(){ return svg; } },
+
       get : { 
         get : function(){
           return function( propName )
@@ -24,10 +38,19 @@
       find : {
         get : function( element )
         {
-          return element;
+          var index = svgView.svg.items.length;
+          while( --index >= 0 )
+          {
+            if( svgView.node === element )
+              return svgView;
+          }
+
+          return false;
         }
       }
-    })
+    });
+
+    return svgView;
   },
 
   setupEvent = function( _this, eventLabel, method )
@@ -46,8 +69,6 @@
       method.call( _this, event );
     });
   },
-
-  setupMethods = function( _
 
   extend = function( svgSetup )
   {
@@ -69,9 +90,6 @@
                     events[eventLabel] );
 
       // extend methods
-      for( methodName in svgSetup )
-      Object.defineProperties( svgBase,
-
     }
   },
 
