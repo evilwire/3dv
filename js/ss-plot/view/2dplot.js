@@ -1,6 +1,6 @@
-(function()
+(function( Raphael )
 {
-  var XYPlot = SSPlot.View.XYPlot = {
+  var XYPlot = SSPlot.View.XYPlot = SSPlot.SVGView.extend({
     events : {
       mouseover : function( event )
       {
@@ -17,8 +17,5 @@
     {
 
     }
-  };
-
-  SSPlot.setup( XYPlot );
-
-})();
+  });
+})( Raphael );
