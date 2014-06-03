@@ -4,10 +4,21 @@
 $(document).ready( function(){
   var paper = Raphael($('.canvas')[0]);
 
-  var xAxis = SSPlot.View.XYAxis({
-    model : {},
-    canvas : paper,
+  var xRange = new SSPlot.Model.Range({ }), 
+
+  xScale = new SSPlot.Model.Range({ }),
+
+  xAxis = new SSPlot.Model.Axis({
+    scale : xScale,
+    range : xRange
   });
+
+  xAxisView = new SSPlot.View.XYAxis({
+    canvas : paper,
+    model : xAxis
+
+  });
+
 
 });
 

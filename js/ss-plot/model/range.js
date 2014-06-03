@@ -1,6 +1,6 @@
 (function(Backbone)
 {
-  SSPlot.Range = Backbone.Model.extend({
+  SSPlot.Model.Range = Backbone.Model.extend({
     defaults : {
       min : 0,
       max : 40
@@ -26,7 +26,7 @@
     },
   };
 
-  SSPlot.Scale = Backbone.Model.extend({
+  SSPlot.Model.Scale = Backbone.Model.extend({
     defaults : {
       type : 'fixed',
       ticSize : 20,
@@ -43,6 +43,23 @@
       var initMethod = ScaleInitMethods[ params.type ];
       scaleAttr = initMethods.call( this, params );
       this.set( newScaleAttr );
+    }
+  });
+
+  SSPlot.Model.Axis = Backbone.Model.extend({
+    initialize : function(){
+      var _this = this;
+
+      this.get('scale').on( 'change',
+        function( event )
+        {
+          _this.trigger('change', {} );
+        } );
+      
+      Object.defineProperties( _this, {
+        scale : { get : function(){ return this.get('scale'); } },
+        range : { get : function(){ return this.get('range'); } }
+      });
     }
   });
 })(Backbone);

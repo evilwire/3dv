@@ -8,7 +8,7 @@
 
     initialize : function()
     {
-      console.log( this.model );
+      console.log( this );
     },
 
     render : function()
