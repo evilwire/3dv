@@ -76,4 +76,7 @@
       });
     }
   });
+
+  SSPlot.Model.BBox = Backbone.Model.extend({
+  });
 })(Backbone);

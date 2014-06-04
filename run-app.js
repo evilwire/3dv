@@ -15,6 +15,13 @@ $(document).ready( function(){
     label : 'p',
   });
 
+  bBox = new SSPlot.Model.BBox({
+    left : 130,
+    top : 40,
+    height: 600,
+    width: 800
+  });
+
   var xAxisView = new SSPlot.View.XYAxis({
     canvas : $('.canvas'),
     model : xAxis,
