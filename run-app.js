@@ -13,13 +13,17 @@ $(document).ready( function(){
     range : xRange,
     type  : 'horizontal',
     label : 'p',
-  });
+  }),
 
   bBox = new SSPlot.Model.BBox({
     left : 130,
     top : 40,
     height: 600,
     width: 800
+  }),
+
+  xyPlot = new SSPlot.Model.XYPlot({
+
   });
 
   var xAxisView = new SSPlot.View.XYAxis({
