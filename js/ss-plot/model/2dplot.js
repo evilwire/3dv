@@ -4,8 +4,7 @@
     initialize : function()
     {
       var _this = this,
-          dependents = ['hscale', 'vscale', 'hrange', 
-            'vrange', 'data', 'bbox'],
+          dependents = ['haxis', 'vaxis', 'data', 'bbox'],
 
          index = dependents.length;
 

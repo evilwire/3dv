@@ -11,9 +11,20 @@ $(document).ready( function(){
   xAxis = new SSPlot.Model.Axis({
     scale : xScale,
     range : xRange,
+    label : 'p',
+  }),
+
+  var xRange = new SSPlot.Model.Range({ }), 
+
+  xScale = new SSPlot.Model.Range({ }),
+
+  xAxis = new SSPlot.Model.Axis({
+    scale : xScale,
+    range : xRange,
     type  : 'horizontal',
     label : 'p',
   }),
+
 
   bBox = new SSPlot.Model.BBox({
     left : 130,
@@ -23,7 +34,7 @@ $(document).ready( function(){
   }),
 
   xyPlot = new SSPlot.Model.XYPlot({
-
+    haxis : xAxis,
   });
 
   var xAxisView = new SSPlot.View.XYAxis({
