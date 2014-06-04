@@ -4,7 +4,7 @@
     initialize : function()
     {
       var _this = this,
-          dependents = ['haxis', 'vaxis', 'data', 'bbox'],
+          dependents = ['haxis', 'vaxis', 'bbox'],
 
          index = dependents.length;
 
@@ -22,7 +22,7 @@
             } );
 
             _this.trigger('change', event );
-          }
+          } );
       }
     },
   });

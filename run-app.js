@@ -14,17 +14,15 @@ $(document).ready( function(){
     label : 'p',
   }),
 
-  var xRange = new SSPlot.Model.Range({ }), 
+  yRange = new SSPlot.Model.Range({ }), 
 
-  xScale = new SSPlot.Model.Range({ }),
+  yScale = new SSPlot.Model.Range({ }),
 
-  xAxis = new SSPlot.Model.Axis({
-    scale : xScale,
-    range : xRange,
-    type  : 'horizontal',
-    label : 'p',
+  yAxis = new SSPlot.Model.Axis({
+    scale : yScale,
+    range : yRange,
+    label : 'q',
   }),
-
 
   bBox = new SSPlot.Model.BBox({
     left : 130,
@@ -35,11 +33,14 @@ $(document).ready( function(){
 
   xyPlot = new SSPlot.Model.XYPlot({
     haxis : xAxis,
+    vaxis : yAxis,
+    bbox : bBox,
+    data : []
   });
 
-  var xAxisView = new SSPlot.View.XYAxis({
+  var xAxisView = new SSPlot.View.HAxis({
     canvas : $('.canvas'),
-    model : xAxis,
+    model : xyPlot,
     size : 500,
     midpoint : {
       x : 300,
