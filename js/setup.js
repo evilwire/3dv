@@ -1,41 +1,4 @@
-(function($)
-{
-  /**
-   * Object.defineProperty
-   *
-   * support:
-   * IE     : 9
-   * Chrome : 1
-   * FF     : 1
-   * Opera  : 1
-   * Safari : 1
-   */
-  console.log('3D System setup...');
-  Object.defineProperties = 
-    Object.defineProperties || function( obj, properties )
-    {
-      for( propertyName in properties )
-      {
-        var property = properties[ propertyName ];
-
-        if( typeof property['get'] !== 'undefined' )
-          obj.__defineGetter__( propertyName, property.get );
-
-        if( typeof property['set'] !== 'undefined' )
-          obj.__defineSetter__( propertyName, property.set );
-      }
-    };
-
-  Object.defineProperty =
-    Object.defineProperty || function( obj, propertyName, descriptor )
-    {
-      if( typeof descriptor['get'] !== 'undefined' )
-        obj.__defineGetter__( propertyName, descriptor['get'] );
-
-      if( typeof descriptor['set'] !== 'undefined' )
-        obj.__defineGetter__( propertyName, descriptor['set'] );
-    }
-  
+(function(){
   /**
    * Math extensions for decimal based rounding, flooring
    * and ceilings
@@ -79,7 +42,50 @@
     function(value, exp) {
       return decimalAdjust('ceil', value, exp);
     };
-  
   console.log( '3D Vis system setup complete!' );
+})();
 
+if( typeof jQuery !== 'undefined' )
+{
+
+(function($)
+{
+  /**
+   * Object.defineProperty
+   *
+   * support:
+   * IE     : 9
+   * Chrome : 1
+   * FF     : 1
+   * Opera  : 1
+   * Safari : 1
+   */
+  console.log('3D System setup...');
+  Object.defineProperties = 
+    Object.defineProperties || function( obj, properties )
+    {
+      for( propertyName in properties )
+      {
+        var property = properties[ propertyName ];
+
+        if( typeof property['get'] !== 'undefined' )
+          obj.__defineGetter__( propertyName, property.get );
+
+        if( typeof property['set'] !== 'undefined' )
+          obj.__defineSetter__( propertyName, property.set );
+      }
+    };
+
+  Object.defineProperty =
+    Object.defineProperty || function( obj, propertyName, descriptor )
+    {
+      if( typeof descriptor['get'] !== 'undefined' )
+        obj.__defineGetter__( propertyName, descriptor['get'] );
+
+      if( typeof descriptor['set'] !== 'undefined' )
+        obj.__defineGetter__( propertyName, descriptor['set'] );
+    }
+  
 })(jQuery);
+
+}

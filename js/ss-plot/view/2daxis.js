@@ -25,6 +25,9 @@
       }
       axesLabels.attr({
         fill : 'RGB(120, 120, 120)',
+        'font-family' : 'Open sans',
+        'font-size' : '10px'
+
       });
     }
   },
