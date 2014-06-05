@@ -13,10 +13,19 @@
 
       right = params.right;
 
+      var i = 0;
+      var axesLabels = this.paper.set();
+      this.svg.push( axesLabels );
       for( var x = left; x < right; x += ticSize )
       {
-        this.paper
+        axesLabels.push(
+          this.paper.text( x + 10, bottom + 10, String(i) )
+        );
+        ++i;
       }
+      axesLabels.attr({
+        fill : 'RGB(120, 120, 120)',
+      });
     }
   },
 
@@ -73,8 +82,11 @@
       hAxisDrawMethod = HAxisDrawMethods[ scale.get( 'type' ) ];
 
       hAxisDrawMethod.call( this, {
-        'ticSize' : scale.get('ticSize'),
-        'label' : axis.get('label'),
+        ticSize : scale.get('ticSize'),
+        label : axis.get('label'),
+        left : left,
+        bottom : bottom,
+        right : right,
       } );
 
     },
