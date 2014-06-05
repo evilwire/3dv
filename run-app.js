@@ -6,7 +6,7 @@ $(document).ready( function(){
 
   var xRange = new SSPlot.Model.Range({ }), 
 
-  xScale = new SSPlot.Model.Range({ }),
+  xScale = new SSPlot.Model.Scale({ }),
 
   xAxis = new SSPlot.Model.Axis({
     scale : xScale,
@@ -14,7 +14,7 @@ $(document).ready( function(){
     label : 'p',
   }),
 
-  yRange = new SSPlot.Model.Range({ }), 
+  yRange = new SSPlot.Model.Scale({ }), 
 
   yScale = new SSPlot.Model.Range({ }),
 
@@ -25,9 +25,9 @@ $(document).ready( function(){
   }),
 
   bBox = new SSPlot.Model.BBox({
-    left : 130,
+    left : 100,
     top : 40,
-    height: 600,
+    height: 540,
     width: 800
   }),
 
