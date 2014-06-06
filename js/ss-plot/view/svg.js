@@ -78,15 +78,16 @@
 
     $( _this.paper.canvas ).on( eventName, function( event )
     {
-      var target = $( event.target );
+      var target = $( event.target ),
+          eventTarget = target.findAncestor( obj, _this.$el );
       
-      if( !target.findAncestor( obj, _this.$el ) )
+      if( !eventTarget )
         return;
 
       // TODO: figure out a fast way to find the raphael
       // wrapper
       $.extend( event, { 
-        
+        target : eventTarget, 
       } );
 
       method.call( _this, event );

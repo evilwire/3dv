@@ -38,8 +38,17 @@
     events : {
       '.xaxis.label mouseover' : function( event )
       {
-        console.log( event.target );
-      }
+        $( event.target ).attr({
+          fill: '#000'
+        });
+      },
+
+      '.xaxis.label mouseout' : function( event )
+      {
+        $( event.target ).attr({
+          fill: 'RGB(120, 120, 120)'
+        });
+      },
     },
 
     initialize : function()
