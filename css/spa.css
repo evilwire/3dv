@@ -7,7 +7,7 @@ html, body
    left: 0px;
    min-height: 100%;
    min-width: 100%;
-   overflow-x: hidden;
+   /* overflow-x: hidden; */
 }
 
 div.canvas
@@ -24,4 +24,14 @@ div.canvas
 
 .xaxis.label {
   cursor: pointer;
+}
+
+svg 
+{
+  position: absolute;
+}
+
+svg line
+{
+  position: absolute;
 }

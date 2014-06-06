@@ -9,8 +9,7 @@ $(document).ready( function(){
   }), 
 
   xScale = new SSPlot.Model.Scale({ 
-    'ticSize' : 100,
-    'increment' : 5
+    'increment' : 1
   }),
 
   xAxis = new SSPlot.Model.Axis({
@@ -55,7 +54,6 @@ $(document).ready( function(){
 
   xAxisView.render();
   yAxisView.render();
-
 });
 
 })();

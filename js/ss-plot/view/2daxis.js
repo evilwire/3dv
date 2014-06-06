@@ -17,6 +17,7 @@
       this.svg.push( axesLabels );
       for( var x = left; x < right; x += ticSize )
       {
+        // draw the text
         var label = 
           this.paper.text( x + 10, bottom + 10, String(i) );
         axesLabels.push(
@@ -24,9 +25,25 @@
         );
         $( label.node ).attr('class', 'xaxis label' );
         i += increment;
+
+        // draw the tickmark
+        var lineStr = 
+          lineTemplate({
+            x1 : x + 10,
+            y1 : bottom + 3,
+            x2 : x + 10,
+            y2 : bottom
+          }),
+
+        ticMark = this.paper.path( lineStr );
+        ticMark.attr({
+          'stroke' : '#aaa'
+        });
+
+        axesLabels.push( ticMark );
       }
       axesLabels.attr({
-        fill : 'RGB(120, 120, 120)',
+        fill : '#aaa',
         'font-family' : 'Open sans',
         'font-size' : '10px'
       });
@@ -46,7 +63,7 @@
       '.xaxis.label mouseout' : function( event )
       {
         $( event.target ).attr({
-          fill: 'RGB(120, 120, 120)'
+          fill: '#aaa',
         });
       },
     },
@@ -77,20 +94,7 @@
       
       bottom = bbox.get('top') + height,
 
-      right = left + width,
-
-      lineStr = lineTemplate({
-        x1 : left,
-        y1 : bottom,
-        x2 : right,
-        y2 : bottom
-      });
-
-      // draw the axes
-      var line = this.paper.path( lineStr );
-      line.attr({
-        'stroke' : '#888',
-      });
+      right = left + width;
 
       // draw the tick marks
       var axis = this.model.get('haxis'),
