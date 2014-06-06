@@ -1,6 +1,9 @@
 (function( Raphael, _ )
 {
-  var XYGrid = SSPlot.View.XYGrid =
+  var lineTemplate = 
+    _.template('M<%= x1 %> <%= y1 %>L<%= x2 %> <%= y2 %>'),
+
+  XYGrid = SSPlot.View.XYGrid =
   SSPlot.SVGView.extend( {
     initialize : function()
     {
@@ -22,7 +25,7 @@
       // draw grid lines
       left = bbox.get('left'),
       top = bbox.get('top'),
-      right = bbox.get('left') + bbox.get('right'),
+      right = bbox.get('left') + bbox.get('width'),
       bottom = bbox.get('top') + bbox.get('height');
 
       xTicSize = this.model.get('haxis').get('scale').get('ticSize'),
@@ -38,6 +41,20 @@
               y1 : top,
               x2 : x + 10,
               y2 : bottom
+            } ) )
+          .attr({ stroke : '#fff' } ) );
+      }
+
+      for( var y = bottom; 
+               y > top; 
+               y -= yTicSize )
+      {
+        this.svg.push(
+          this.paper.path( lineTemplate( {
+              x1 : left,
+              y1 : y - 10,
+              x2 : right,
+              y2 : y - 10, 
             } ) )
           .attr({ stroke : '#fff' } ) );
       }

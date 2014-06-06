@@ -53,8 +53,15 @@ $(document).ready( function(){
     model : xyPlot,
   });
 
+  var xyGrid = new SSPlot.View.XYGrid({
+    model : xyPlot,
+    paper : paper
+  });
+
   xAxisView.render();
   yAxisView.render();
+
+  xyGrid.render();
 });
 
 })();
