@@ -18,9 +18,10 @@ $(document).ready( function(){
     label : 'p',
   }),
 
-  yRange = new SSPlot.Model.Scale({ }), 
+  yRange = new SSPlot.Model.Range({ }), 
 
-  yScale = new SSPlot.Model.Range({ }),
+  yScale = new SSPlot.Model.Scale({ 
+    increment : 1 }),
 
   yAxis = new SSPlot.Model.Axis({
     scale : yScale,

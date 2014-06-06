@@ -22,8 +22,15 @@ div.canvas
    right: 0px;
 }
 
-.xaxis.label {
-  cursor: pointer;
+.yaxis.label, .xaxis.label {
+  cursor : pointer;
+  fill : #aaa;
+  font-family : Open sans;
+  font-size : 10px;
+}
+
+.yaxis.label:hover, .xaxis.label:hover {
+  fill : #222;
 }
 
 svg 
