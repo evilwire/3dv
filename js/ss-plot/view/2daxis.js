@@ -38,6 +38,7 @@
     events : {
       '.xaxis.label mouseover' : function( event )
       {
+        console.log( event.target );
       }
     },
 

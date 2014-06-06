@@ -2,8 +2,6 @@
 {
   SSPlot.SVGView = function( params )
   {
-    console.log( params.paper );
-
     var svgView = {},
 
     paper = params.paper,
@@ -81,12 +79,15 @@
     $( _this.paper.canvas ).on( eventName, function( event )
     {
       var target = $( event.target );
-
-      if( !target.findAncestor( obj ) )
+      
+      if( !target.findAncestor( obj, _this.$el ) )
         return;
 
-      // TODO: add something to the event?
-      $.extend( event, { } );
+      // TODO: figure out a fast way to find the raphael
+      // wrapper
+      $.extend( event, { 
+        
+      } );
 
       method.call( _this, event );
     });

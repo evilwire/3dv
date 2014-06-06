@@ -91,9 +91,12 @@ if( typeof jQuery !== 'undefined' )
    */
   if( !$.fn.findAncestor )
   {
-    $.fn.findAncestor = function( ancestor )
+    $.fn.findAncestor = function( ancestor, cap )
     {
-      var matchingElts= $( ancestor );
+      cap = $( cap );
+      var matchingElts = (typeof cap == 'undefined' )?
+        matchingElts = $( ancestor ) : cap.find( ancestor );
+
       if( matchingElts.length == 0 ) return false;
 
       var test = this;
