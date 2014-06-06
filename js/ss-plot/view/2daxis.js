@@ -84,35 +84,19 @@
     {
       // get the type of axis it is
       var bbox = this.model.get('bbox'),
-      
-      // draw about 20 from the left 
-      left = bbox.get('left'),
-
-      width = bbox.get('width'),
-
-      height = bbox.get('height'),
-      
-      bottom = bbox.get('top') + height,
-
-      right = left + width;
-
-      // draw the tick marks
-      var axis = this.model.get('haxis'),
-
+      axis = this.model.get('haxis'),
       range = axis.get('range'),
-
       scale = axis.get('scale'),
-
       hAxisDrawMethod = HAxisDrawMethods[ scale.get( 'type' ) ];
 
       hAxisDrawMethod.call( this, {
         ticSize : scale.get('ticSize'),
         label : axis.get('label'),
         increment : scale.get('increment'),
-        left : left,
+        left : bbox.get('left'),
         min : range.get('min'),
-        bottom : bottom,
-        right : right,
+        bottom : bbox.get('top') + bbox.get('height'),
+        right : bbox.get('left') + bbox.get('width'),
       } );
     },
   } );
