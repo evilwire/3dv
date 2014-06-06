@@ -103,6 +103,14 @@
   SSPlot.SVGView.extend( {
     initialize : function()
     {
+      var _this = this;
+
+      // redraw when the axis update
+      this.model.on( 'change', 
+        function( event )
+        {
+          _this.render();
+        });
     },
 
     render : function()
