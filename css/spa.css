@@ -37,3 +37,8 @@ svg
 {
   position: absolute;
 }
+
+.grid.hline, .grid.vline {
+  stroke : #aaa;
+  stroke-dasharray : 1,4;
+}

@@ -35,30 +35,32 @@
                x < right; 
                x += xTicSize )
       {
-        this.svg.push(
-          this.paper.path( lineTemplate( {
+        var vLine = this.paper.path( lineTemplate( {
               x1 : x + 10,
               y1 : top,
               x2 : x + 10,
               y2 : bottom
-            } ) )
-          .attr({ stroke : '#fff' } ) );
+            } ) );
+
+        $( vLine.node ).attr( 'class', 'grid vline' );
+        this.svg.push( vLine );
       }
 
       for( var y = bottom; 
                y > top; 
                y -= yTicSize )
       {
-        this.svg.push(
+        var hLine =
           this.paper.path( lineTemplate( {
               x1 : left,
               y1 : y - 10,
               x2 : right,
               y2 : y - 10, 
-            } ) )
-          .attr({ stroke : '#fff' } ) );
-      }
+            } ) );
 
+        $( hLine.node ).attr( 'class', 'grid hline' );
+        this.svg.push( hLine );
+      }
     } 
   });
 
