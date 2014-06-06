@@ -75,14 +75,18 @@
     var label = eventLabel.split(' '),
         obj = label[0],
         eventName = label[1];
-    
-    $(obj).on( eventName, function( event )
+
+    $( _this.paper.canvas ).on( eventName, function( event )
     {
       var target = _this.find( event.target );
+
+      if( $.inArray( $( target ), $( obj ) ) <= 0 )
+        return;
 
       $.extend( event, {
 
       } );
+
       method.call( _this, event );
     });
   },

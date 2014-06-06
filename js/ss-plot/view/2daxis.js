@@ -6,28 +6,29 @@
     'fixed' : function( params )
     {
       var ticSize = params.ticSize,
-
       left = params.left,
-
       bottom = params.bottom,
+      right = params.right,
+      min = params.min,
+      increment = params.increment;
 
-      right = params.right;
-
-      var i = 0;
-      var axesLabels = this.paper.set();
+      var i = min,
+      axesLabels = this.paper.set();
       this.svg.push( axesLabels );
       for( var x = left; x < right; x += ticSize )
       {
+        var label = 
+          this.paper.text( x + 10, bottom + 10, String(i) );
         axesLabels.push(
-          this.paper.text( x + 10, bottom + 10, String(i) )
+          label
         );
-        ++i;
+        $( label.node ).attr('class', 'xaxis label' );
+        i += increment;
       }
       axesLabels.attr({
         fill : 'RGB(120, 120, 120)',
         'font-family' : 'Open sans',
         'font-size' : '10px'
-
       });
     }
   },
@@ -35,7 +36,10 @@
   HAxis = SSPlot.View.HAxis = 
   SSPlot.SVGView.extend( {
     events : {
-
+      '.xaxis.label mouseover' : function( event )
+      {
+        console.log( this );
+      }
     },
 
     initialize : function()
@@ -73,7 +77,10 @@
         y2 : bottom
       });
       // draw the axes
-      this.paper.path( lineStr );
+      var line = this.paper.path( lineStr );
+      line.attr({
+        'stroke' : '#888',
+      });
 
       // draw the tick marks
       var axis = this.model.get('haxis'),
@@ -87,7 +94,9 @@
       hAxisDrawMethod.call( this, {
         ticSize : scale.get('ticSize'),
         label : axis.get('label'),
+        increment : scale.get('increment'),
         left : left,
+        min : range.get('min'),
         bottom : bottom,
         right : right,
       } );
@@ -98,7 +107,6 @@
   VAxis = SSPlot.View.VAxis =
   SSPlot.SVGView.extend( {
     events : {
-
     },
 
     initialize : function()

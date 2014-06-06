@@ -4,9 +4,14 @@
 $(document).ready( function(){
   var paper = Raphael($('.canvas')[0]);
 
-  var xRange = new SSPlot.Model.Range({ }), 
+  var xRange = new SSPlot.Model.Range({ 
 
-  xScale = new SSPlot.Model.Scale({ }),
+  }), 
+
+  xScale = new SSPlot.Model.Scale({ 
+    'ticSize' : 100,
+    'increment' : 5
+  }),
 
   xAxis = new SSPlot.Model.Axis({
     scale : xScale,

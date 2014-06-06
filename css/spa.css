@@ -21,3 +21,7 @@ div.canvas
    left: 0px;
    right: 0px;
 }
+
+.xaxis.label {
+  cursor: pointer;
+}

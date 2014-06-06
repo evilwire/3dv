@@ -85,6 +85,25 @@ if( typeof jQuery !== 'undefined' )
       if( typeof descriptor['set'] !== 'undefined' )
         obj.__defineGetter__( propertyName, descriptor['set'] );
     }
+    
+  /**
+   * Extend JQuery to retrieve ancestors
+   */
+  if( !$.fn.findAncestor )
+  {
+    $.fn.findAncestor = function( ancestor )
+    {
+      var matchingElts= $( ancestor );
+      if( matchingElts.length == 0 ) return false;
+
+      var test = this;
+      while( test.length > 0 &&
+        $.inArray( test[0], matchingElts ) < 0 )
+        test = test.parent();
+
+      return test.length == 0? false : test;
+    }
+  }
   
 })(jQuery);
 
