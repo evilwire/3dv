@@ -2,9 +2,9 @@
 {
 
 $(document).ready( function(){
-  var paper = Raphael($('.canvas')[0]);
+  var paper = Raphael($('.canvas')[0]),
 
-  var xRange = new SSPlot.Model.Range({ 
+  xRange = new SSPlot.Model.Range({ 
 
   }), 
 

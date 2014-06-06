@@ -69,24 +69,6 @@
 
   HAxis = SSPlot.View.HAxis = 
   SSPlot.SVGView.extend( {
-    events : {
-      '.xaxis.label mouseover' : function( event )
-      {
-        /*$( event.target ).attr({
-          fill: '#000'
-        });*/
-      },
-
-      '.xaxis.label mouseout' : function( event )
-      {
-        /*
-        $( event.target ).attr({
-          fill: '#aaa',
-        });
-        */
-      },
-    },
-
     initialize : function()
     {
       var _this = this;
@@ -117,12 +99,8 @@
       } );
     },
   } );
-
   var VAxis = SSPlot.View.VAxis =
   SSPlot.SVGView.extend( {
-    events : {
-    },
-
     initialize : function()
     {
     },
@@ -133,8 +111,6 @@
       var bbox = this.model.get('bbox'),
       axis = this.model.get('vaxis'),
       scale = axis.get('scale');
-
-      console.log( scale.get('type') );
 
       // draw the tick marks
       VAxisDrawMethods[ scale.get( 'type' ) ].call( this, 
