@@ -99,6 +99,7 @@
       } );
     },
   } );
+
   var VAxis = SSPlot.View.VAxis =
   SSPlot.SVGView.extend( {
     initialize : function()
