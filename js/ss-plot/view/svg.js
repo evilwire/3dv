@@ -78,16 +78,17 @@
 
     $( _this.paper.canvas ).on( eventName, function( event )
     {
-      var target = _this.find( event.target );
+      var target = $( event.target );
 
-      if( $.inArray( $( target ), $( obj ) ) <= 0 )
+      if( !target.findAncestor( obj ) )
         return;
 
-      $.extend( event, {
+      // TODO: add something to the event?
+      $.extend( event, { } );
 
-      } );
-
-      method.call( _this, event );
+      window.setTimeout( function(){ 
+        method.call( _this, event );
+      }, 15 );
     });
   },
 
