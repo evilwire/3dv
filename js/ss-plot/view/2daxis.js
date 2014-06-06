@@ -38,7 +38,6 @@
     events : {
       '.xaxis.label mouseover' : function( event )
       {
-        console.log( this );
       }
     },
 
@@ -115,6 +114,31 @@
 
     render : function()
     {
+      // get the type of axis it is
+      var bbox = this.model.get('bbox'),
+      
+      // draw about 20 from the left 
+      left = bbox.get('left'),
+
+      height = bbox.get('height'),
+
+      top = bbox.get('top'),
+      
+      bottom = bbox.get('top') + height,
+
+      lineStr = lineTemplate({
+        x1 : left,
+        y1 : top,
+        x2 : left,
+        y2 : bottom
+      });
+      // draw the axes
+      var line = this.paper.path( lineStr );
+      line.attr({
+        'stroke' : '#888',
+      });
+
+      // draw the tick marks
     }
   } );
 

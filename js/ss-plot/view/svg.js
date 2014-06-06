@@ -86,9 +86,7 @@
       // TODO: add something to the event?
       $.extend( event, { } );
 
-      window.setTimeout( function(){ 
-        method.call( _this, event );
-      }, 15 );
+      method.call( _this, event );
     });
   },
 
