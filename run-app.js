@@ -41,27 +41,15 @@ $(document).ready( function(){
     vaxis : yAxis,
     bbox : bBox,
     data : []
-  });
+  }),
 
-  var xAxisView = new SSPlot.View.HAxis({
+  xyPlotView = new SSPlot.View.XYPlot({
     paper : paper,
     model : xyPlot
   });
 
-  var yAxisView = new SSPlot.View.VAxis({
-    paper : paper,
-    model : xyPlot,
-  });
+  xyPlotView.render();
 
-  var xyGrid = new SSPlot.View.XYGrid({
-    model : xyPlot,
-    paper : paper
-  });
-
-  xAxisView.render();
-  yAxisView.render();
-
-  xyGrid.render();
 });
 
 })();
