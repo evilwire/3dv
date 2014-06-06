@@ -44,16 +44,17 @@ $(document).ready( function(){
   });
 
   var xAxisView = new SSPlot.View.HAxis({
-    canvas : $('.canvas'),
+    paper : paper,
+    model : xyPlot
+  });
+
+  var yAxisView = new SSPlot.View.VAxis({
+    paper : paper,
     model : xyPlot,
-    size : 500,
-    midpoint : {
-      x : 300,
-      y : 500
-    }
   });
 
   xAxisView.render();
+  yAxisView.render();
 
 });
 

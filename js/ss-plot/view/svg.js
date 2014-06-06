@@ -2,13 +2,15 @@
 {
   SSPlot.SVGView = function( params )
   {
+    console.log( params.paper );
+
     var svgView = {},
 
-    $el = $(params.canvas) || $('<div></div>'),
+    paper = params.paper,
+
+    $el = $( paper.canvas ).parent(),
 
     el = $el[0],
-
-    paper = Raphael( el ),
 
     svg = paper.set();
 
@@ -104,14 +106,17 @@
       var svgBase = new SSPlot.SVGView( params ),
           params = $.extend( null, defaults, svgSetup );
 
+
       // call initializer
       initialize.call( svgBase );
 
       // setup events
       for( eventLabel in events )
+      {
         __setupEvent( svgBase, 
                     eventLabel, 
                     events[eventLabel] );
+      }
 
       // extend methods
       for( methodName in svgSetup )

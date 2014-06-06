@@ -75,6 +75,7 @@
         x2 : right,
         y2 : bottom
       });
+
       // draw the axes
       var line = this.paper.path( lineStr );
       line.attr({
@@ -99,11 +100,10 @@
         bottom : bottom,
         right : right,
       } );
-
     },
-  } ),
+  } );
 
-  VAxis = SSPlot.View.VAxis =
+  var VAxis = SSPlot.View.VAxis =
   SSPlot.SVGView.extend( {
     events : {
     },
