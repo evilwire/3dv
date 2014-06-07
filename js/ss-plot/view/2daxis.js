@@ -5,11 +5,7 @@
   HAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var bottom = params.bottom,
-      right = params.right,
-      min = params.min,
-      increment = params.increment,
-      i = min,
+      var i = params.min,
       axesLabels = this.paper.set();
       this.svg.push( axesLabels );
       for( var x = params.left; 
@@ -30,7 +26,7 @@
         axesLabels.push( label );
 
         $( label.node ).attr( 'class', 'xaxis label' );
-        i += increment;
+        i += params.increment;
       }
     }
   },
@@ -38,10 +34,7 @@
   VAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var left = params.left,
-      top = params.top,
-      bottom = params.bottom,
-      i = params.min,
+      var i = params.min,
       axesLabels = this.paper.set();
       this.svg.push( axesLabels );
       for( var y = params.bottom; 
