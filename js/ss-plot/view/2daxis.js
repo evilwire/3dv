@@ -6,23 +6,24 @@
     'fixed' : function( params )
     {
       var i = params.min,
+      offset = params.offset,
       axesLabels = this.paper.set();
       this.svg.push( axesLabels );
-      for( var x = params.left; 
+      for( var x = params.left + offset; 
                x < params.right; 
                x += params.ticSize )
       {
         axesLabels.push(
           this.paper.path( lineTemplate( {
-              x1 : x + 10,
+              x1 : x,
               y1 : params.bottom + 3,
-              x2 : x + 10,
+              x2 : x,
               y2 : params.bottom
             } ) )
           .attr({ stroke : '#aaa' } ) );
-        // draw the text
         var label = 
-          this.paper.text( x + 10, params.bottom + 10, String(i) )
+          this.paper.text( x, 
+            params.bottom + 10, String(i) )
         axesLabels.push( label );
 
         $( label.node ).attr( 'class', 'xaxis label' );
@@ -37,21 +38,21 @@
       var i = params.min,
       axesLabels = this.paper.set();
       this.svg.push( axesLabels );
-      for( var y = params.bottom; 
+      for( var y = params.bottom - params.offset; 
                y > params.top; 
                y -= params.ticSize )
       {
         axesLabels.push(
           this.paper.path( lineTemplate( {
               x1 : params.left,
-              y1 : y - 10,
+              y1 : y,
               x2 : params.left + 3,
-              y2 : y - 10
+              y2 : y
             } ) )
           .attr({ stroke : '#aaa' } ) );
         // draw the text
         var label = 
-          this.paper.text( params.left - 10, y - 10, String(i) )
+          this.paper.text( params.left - 10, y, String(i) )
         axesLabels.push( label );
 
         $( label.node ).attr( 'class', 'yaxis label' );
@@ -84,6 +85,7 @@
       {
         ticSize : scale.get('ticSize'),
         label : axis.get('label'),
+        offset : axis.get('range').get('offset'),
         increment : scale.get('increment'),
         bottom : bbox.get('top') + bbox.get('height'),
         left : bbox.get('left'),
@@ -119,6 +121,7 @@
       {
         ticSize : scale.get('ticSize'),
         label : axis.get( 'label' ),
+        offset : axis.get('range').get('offset'),
         increment : scale.get( 'increment' ),
         left : bbox.get( 'left' ),
         top : bbox.get( 'top' ),
