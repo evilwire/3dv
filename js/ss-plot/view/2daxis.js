@@ -90,7 +90,7 @@
         bottom : bbox.get('top') + bbox.get('height'),
         left : bbox.get('left'),
         right : bbox.get('left') + bbox.get('width'),
-        min : axis.get('range').get('min'),
+        min : this.model.getInitialValues().x,
       } );
     },
   } );
@@ -126,7 +126,7 @@
         left : bbox.get( 'left' ),
         top : bbox.get( 'top' ),
         bottom : bbox.get( 'top' ) + bbox.get('height'),
-        min : axis.get( 'range' ).get( 'min' ),
+        min : this.model.getInitialValues().y
       } );
     } 
   });

@@ -26,6 +26,24 @@
       }
     },
 
+    getInitialValues : function()
+    {
+      var xticSize = this.get('haxis').get('scale').get('ticSize'),
+          xoffset = this.get('haxis').get('range').get('offset'),
+          xincrement = this.get('haxis').get('scale').get('increment');
+
+          yticSize = this.get('vaxis').get('scale').get('ticSize'),
+          yoffset = this.get('vaxis').get('range').get('offset'),
+          yincrement = this.get('vaxis').get('scale').get('increment');
+
+      console.log( xincrement, xoffset, xticSize );
+
+      return {
+        x : Math.ceil( xincrement * -xoffset / xticSize + 0.001 ),
+        y : Math.ceil( yincrement * -yoffset / yticSize + 0.001 )
+      };
+    },
+
     getPaperCoord : function( xVal, yVal )
     {
       // if off the grid, then return false

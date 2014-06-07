@@ -29,16 +29,18 @@
       bottom = bbox.get('top') + bbox.get('height');
 
       xTicSize = this.model.get('haxis').get('scale').get('ticSize'),
-      yTicSize = this.model.get('vaxis').get('scale').get('ticSize');
+      xoffset = this.model.get('haxis').get('range').get('offset'),
+      yTicSize = this.model.get('vaxis').get('scale').get('ticSize'),
+      yoffset = this.model.get('vaxis').get('range').get('offset');
 
-      for( var x = left; 
+      for( var x = left + xoffset; 
                x < right; 
                x += xTicSize )
       {
         var vLine = this.paper.path( lineTemplate( {
-              x1 : x + 10,
+              x1 : x,
               y1 : top,
-              x2 : x + 10,
+              x2 : x,
               y2 : bottom
             } ) );
 
@@ -46,16 +48,16 @@
         this.svg.push( vLine );
       }
 
-      for( var y = bottom; 
+      for( var y = bottom - yoffset; 
                y > top; 
                y -= yTicSize )
       {
         var hLine =
           this.paper.path( lineTemplate( {
               x1 : left,
-              y1 : y - 10,
+              y1 : y,
               x2 : right,
-              y2 : y - 10, 
+              y2 : y, 
             } ) );
 
         $( hLine.node ).attr( 'class', 'grid hline' );
@@ -63,5 +65,4 @@
       }
     } 
   });
-
 })( Raphael, _ )

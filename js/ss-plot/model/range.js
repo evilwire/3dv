@@ -4,7 +4,7 @@
     defaults : {
       min : 0,
       max : 40,
-      offset : 30
+      offset : -130
     },
 
     validate : function()
@@ -31,6 +31,7 @@
     defaults : {
       type : 'fixed',
       ticSize : 20,
+      increment : 1
     },
 
     initilize : function(){

@@ -6,9 +6,7 @@ $(document).ready( function(){
 
   xRange = new SSPlot.Model.Range({ }), 
 
-  xScale = new SSPlot.Model.Scale({ 
-    increment : 1
-  }),
+  xScale = new SSPlot.Model.Scale({ }),
 
   xAxis = new SSPlot.Model.Axis({
     scale : xScale,
@@ -18,8 +16,7 @@ $(document).ready( function(){
 
   yRange = new SSPlot.Model.Range({ }), 
 
-  yScale = new SSPlot.Model.Scale({ 
-    increment : 1 }),
+  yScale = new SSPlot.Model.Scale({ }),
 
   yAxis = new SSPlot.Model.Axis({
     scale : yScale,
@@ -45,6 +42,8 @@ $(document).ready( function(){
     paper : paper,
     model : xyPlot
   });
+
+  xyPlot.getInitialValues();
 
   xyPlotView.render();
 } );
