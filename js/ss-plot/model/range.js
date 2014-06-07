@@ -3,7 +3,8 @@
   SSPlot.Model.Range = Backbone.Model.extend({
     defaults : {
       min : 0,
-      max : 40
+      max : 40,
+      offset : 10
     },
 
     validate : function()

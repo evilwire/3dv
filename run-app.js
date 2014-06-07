@@ -4,12 +4,10 @@
 $(document).ready( function(){
   var paper = Raphael($('.canvas')[0]),
 
-  xRange = new SSPlot.Model.Range({ 
-
-  }), 
+  xRange = new SSPlot.Model.Range({ }), 
 
   xScale = new SSPlot.Model.Scale({ 
-    'increment' : 1
+    increment : 1
   }),
 
   xAxis = new SSPlot.Model.Axis({
@@ -49,7 +47,6 @@ $(document).ready( function(){
   });
 
   xyPlotView.render();
-
-});
+} );
 
 })();

@@ -25,5 +25,19 @@
           } );
       }
     },
+
+    getPaperCoord : function( xVal, yVal )
+    {
+      // if off the grid, then return false
+      var xscale = this.get('haxis').get('scale'),
+          xrange = this.get('haxis').get('range'),
+          yscale = this.get('vaxis').get('scale'),
+          yrange = this.get('vaxis').get('range');
+
+      return {
+        left : 0,
+        top  : 0
+      }
+    }
   });
 })(Backbone);
