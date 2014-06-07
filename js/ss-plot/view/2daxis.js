@@ -6,10 +6,15 @@
     'fixed' : function( params )
     {
       var i = params.min,
-      offset = params.offset,
-      axesLabels = this.paper.set();
+      axesLabels = this.paper.set(),
+      ratio = params.offset / params.ticSize,
+      leadTics = Math.floor( ratio ),
+      startingPoint = 
+        parseInt( ( ratio - leadTics ) * 
+          params.ticSize );
+
       this.svg.push( axesLabels );
-      for( var x = params.left + offset; 
+      for( var x = params.left + startingPoint; 
                x < params.right; 
                x += params.ticSize )
       {
@@ -37,8 +42,14 @@
     {
       var i = params.min,
       axesLabels = this.paper.set();
+      ratio = params.offset / params.ticSize,
+      leadTics = Math.floor( ratio ),
+      startingPoint = 
+        parseInt( ( ratio - leadTics ) * 
+          params.ticSize );
+
       this.svg.push( axesLabels );
-      for( var y = params.bottom - params.offset; 
+      for( var y = params.bottom - startingPoint;
                y > params.top; 
                y -= params.ticSize )
       {

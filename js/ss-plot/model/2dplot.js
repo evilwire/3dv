@@ -39,8 +39,8 @@
       console.log( xincrement, xoffset, xticSize );
 
       return {
-        x : Math.ceil( xincrement * -xoffset / xticSize + 0.001 ),
-        y : Math.ceil( yincrement * -yoffset / yticSize + 0.001 )
+        x : Math.ceil( xincrement * -xoffset / xticSize + 0.0000001 ),
+        y : Math.ceil( yincrement * -yoffset / yticSize + 0.0000001 )
       };
     },
 
