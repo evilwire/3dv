@@ -4,7 +4,7 @@
     defaults : {
       min : 0,
       max : 40,
-      offset : -130
+      offset : 10
     },
 
     validate : function()

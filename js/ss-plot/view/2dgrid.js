@@ -31,9 +31,20 @@
       xTicSize = this.model.get('haxis').get('scale').get('ticSize'),
       xoffset = this.model.get('haxis').get('range').get('offset'),
       yTicSize = this.model.get('vaxis').get('scale').get('ticSize'),
-      yoffset = this.model.get('vaxis').get('range').get('offset');
+      yoffset = this.model.get('vaxis').get('range').get('offset'),
 
-      for( var x = left + xoffset; 
+      xratio = xoffset / xTicSize,
+      xleadTics = Math.floor( xratio ),
+      xStartingPoint = 
+        xTicSize - parseInt( ( ratio - leadTics ) * xTicSize ),
+
+      yratio = yoffset / yTicSize,
+      yleadTics = Math.floor( xratio ),
+      yStartingPoint = 
+        yTicSize - parseInt( ( ratio - leadTics ) * yTicSize );
+
+
+      for( var x = left + xStartingPoint; 
                x < right; 
                x += xTicSize )
       {
@@ -48,7 +59,7 @@
         this.svg.push( vLine );
       }
 
-      for( var y = bottom - yoffset; 
+      for( var y = bottom - yStartingPoint; 
                y > top; 
                y -= yTicSize )
       {

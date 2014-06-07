@@ -36,8 +36,6 @@
           yoffset = this.get('vaxis').get('range').get('offset'),
           yincrement = this.get('vaxis').get('scale').get('increment');
 
-      console.log( xincrement, xoffset, xticSize );
-
       return {
         x : Math.ceil( xincrement * -xoffset / xticSize + 0.0000001 ),
         y : Math.ceil( yincrement * -yoffset / yticSize + 0.0000001 )
