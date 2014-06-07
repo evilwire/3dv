@@ -10,7 +10,7 @@
       ratio = params.offset / params.ticSize,
       leadTics = Math.floor( ratio ),
       startingPoint = 
-        parseInt( ( ratio - leadTics ) * 
+        params.ticSize - parseInt( ( ratio - leadTics ) * 
           params.ticSize );
 
       this.svg.push( axesLabels );
@@ -45,7 +45,7 @@
       ratio = params.offset / params.ticSize,
       leadTics = Math.floor( ratio ),
       startingPoint = 
-        parseInt( ( ratio - leadTics ) * 
+        params.ticSize - parseInt( ( ratio - leadTics ) * 
           params.ticSize );
 
       this.svg.push( axesLabels );
