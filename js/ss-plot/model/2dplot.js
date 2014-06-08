@@ -70,12 +70,15 @@
       var xscale = this.get('haxis').get('scale'),
           xrange = this.get('haxis').get('range'),
           yscale = this.get('vaxis').get('scale'),
-          yrange = this.get('vaxis').get('range');
+          yrange = this.get('vaxis').get('range'),
 
       return {
-        left : 0,
-        top  : 0
-      }
+        left : parseInt( (xVal * xscale.get('ticSize') 
+          / xscale.get('increment')) + xrange.get('offset') ),
+
+        top : parseInt( (yVal * yscale.get('ticSize') 
+          / yscale.get('increment')) + yrange.get('offset') ),
+      };
     }
   });
 })(Backbone);
