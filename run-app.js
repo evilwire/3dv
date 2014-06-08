@@ -31,11 +31,13 @@ $(document).ready( function(){
     width: 800
   }),
 
+  data = new SSPlot.Collection.XYDataCollection(),
+
   xyPlot = new SSPlot.Model.XYPlot({
     haxis : xAxis,
     vaxis : yAxis,
     bbox : bBox,
-    data : []
+    data : data,
   }),
 
   xyPlotView = new SSPlot.View.XYPlot({

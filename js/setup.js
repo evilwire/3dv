@@ -43,6 +43,18 @@
       return decimalAdjust('ceil', value, exp);
     };
   console.log( '3D Vis system setup complete!' );
+
+  Object.defineProperty( Array, 'concat',
+    { get : function()
+            {
+              return function( a, b )
+              {
+                a = a || [];
+                b = b || [];
+                return a.concat( b );
+              }
+            },
+    } );
 })();
 
 if( typeof jQuery !== 'undefined' )
