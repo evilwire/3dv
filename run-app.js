@@ -46,11 +46,7 @@ $(document).ready( function(){
   });
 
   xyPlot.getInitialValues();
-
   xyPlotView.render();
-
-  xyPlot.getPaperCoord( 2, 4 );
-
 } );
 
 })();

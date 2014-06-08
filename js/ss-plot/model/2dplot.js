@@ -70,7 +70,7 @@
       var xscale = this.get('haxis').get('scale'),
           xrange = this.get('haxis').get('range'),
           yscale = this.get('vaxis').get('scale'),
-          yrange = this.get('vaxis').get('range'),
+          yrange = this.get('vaxis').get('range');
 
       return {
         left : parseInt( (xVal * xscale.get('ticSize') 
