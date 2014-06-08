@@ -24,6 +24,28 @@
             _this.trigger('change', event );
           } );
       }
+
+      this.get( 'data' ).on( 'add',
+        function( event )
+        {
+          $.extend( event, {
+            type : 'add:data',
+            target : this.get( 'data' )
+          } );
+
+          _this.trigger('change', event );
+        } );
+
+      this.get( 'data' ).on( 'remove',
+        function( event )
+        {
+          $.extend( event, {
+            type : 'remove:data',
+            target : this.get( 'data' )
+          } );
+
+          _this.trigger('change', event );
+        } );
     },
 
     getInitialValues : function()
