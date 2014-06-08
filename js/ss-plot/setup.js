@@ -3,11 +3,12 @@ var SSPlot = SSPlot || {};
 (function()
 {
   var View = {},
-
-  Model = {};
+  Model = {},
+  Collection = {};
 
   Object.defineProperties( SSPlot, {
     View : { get : function(){ return View; } },
-    Model : { get : function(){ return Model; } }
+    Model : { get : function(){ return Model; } },
+    Collection : { get : function(){ return Collection; } }
   });
 })();
