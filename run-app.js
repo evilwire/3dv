@@ -48,6 +48,10 @@ $(document).ready( function(){
   {
     event.preventDefault();
   } );
+
+  var dataPt = new SSPlot.View.XYData({
+    this.
+  });
 } );
 
 })();

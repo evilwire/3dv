@@ -11,8 +11,8 @@
     initialize : function()
     {
       Object.defineProperties( this, {
-        x : { get : function(){ return this.get('x'); } },
-        y : { get : function(){ return this.get('y'); } }
+        x : { get : function(){ return this.get('data').get('x'); } },
+        y : { get : function(){ return this.get('data').get('y'); } }
       } );
     },
 
