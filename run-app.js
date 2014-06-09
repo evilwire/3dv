@@ -50,8 +50,15 @@ $(document).ready( function(){
   } );
 
   var dataPt = new SSPlot.View.XYData({
-    this.
+    model : xyPlot,
+    paper : paper,
+    data : new SSPlot.Model.XYData({
+      x : 3,
+      y : 4
+    })
   });
+
+  dataPt.render();
 } );
 
 })();

@@ -3,7 +3,8 @@
   var __defaultClass = ['data'],
 
   __defaultStyle = {
-    fill : '#2af'
+    fill : '#28a',
+    'stroke-width' : '0px'
   },
 
   XYData = SSPlot.View.XYData =
@@ -19,30 +20,32 @@
     render : function( classList, style )
     {
       classList = Array.concat( classList, __defaultClass );
-      $.extend(style, __defaultStyle);
+      style = $.extend( {}, style, __defaultStyle );
+
+      console.log( style );
+      console.log( __defaultStyle );
 
       // get the x and y coordinates
       var coords = this.model.getPaperCoord( this.x, this.y ),
           bbox = this.model.get('bbox');
-
+      
       if( coords.x < bbox.get( 'left' ) ||
           coords.y < bbox.get( 'top' ) ||
           coords.x > bbox.get( 'left' ) + bbox.get( 'width' ) ||
           coords.y > bbox.get( 'top' ) + bbox.get( 'height' ) )
         return;
       
-      // draw a dot
-      var dot = this.paper.circle( coords.x, coords.y, 10 )
-                    .attr( style )
-                    .mouseover( function(){
+      var dot = this.paper.circle( coords.x, coords.y, 5 );
+      dot.attr( style );
+      dot.mouseover( function(){
                       dot.animate( Raphael.animation({
-                        r : 20,
-                      }, '>' ) );
+                        r : 8,
+                      }, 50, '>' ) );
                     } )
                     .mouseout( function(){
                       dot.animate( Raphael.animation({
-                        r : 10,
-                      }, '>' ) );
+                        r : 5,
+                      }, 50, '>' ) );
                     } );
 
       $( dot.node ).attr({
