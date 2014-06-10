@@ -22,9 +22,6 @@
       classList = Array.concat( classList, __defaultClass );
       style = $.extend( {}, style, __defaultStyle );
 
-      console.log( style );
-      console.log( __defaultStyle );
-
       // get the x and y coordinates
       var coords = this.model.getPaperCoord( this.x, this.y ),
           bbox = this.model.get('bbox');

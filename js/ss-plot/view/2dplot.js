@@ -12,17 +12,32 @@
       var xAxisView = new SSPlot.View.HAxis({
         paper : this.paper,
         model : this.model,
-      });
+      }),
 
-      var yAxisView = new SSPlot.View.VAxis({
+      yAxisView = new SSPlot.View.VAxis({
         paper : this.paper,
         model : this.model,
-      });
+      }),
 
-      var xyGrid = new SSPlot.View.XYGrid({
+      xyGrid = new SSPlot.View.XYGrid({
         model : this.model,
         paper : this.paper
-      });
+      }),
+
+      dataPoints = [],
+
+      dataModels = this.model.get('data').models,
+
+      index = dataModels.length;
+      
+      while( --index >= 0 )
+      {
+        dataPoints.push( new XYData({
+          model : this.model,
+          paper : paper,
+          data : dataModels[ index ] 
+        }));
+      }
 
       Object.defineProperties( this, {
         xaxis : {
@@ -35,6 +50,11 @@
 
         grid : {
           get : function(){ return xyGrid; }
+        },
+
+        dataPoints : {
+          // not the fastest, but solved the mutability problem
+          get : function(){ return dataPoints.concat( [] ); }
         }
       });
     },
@@ -45,6 +65,14 @@
       this.xaxis.render();
       this.yaxis.render();
       this.grid.render();
+
+      var dataCollection = this.dataPoints;
+      var index = dataCollection.length;
+
+      while( --index >= 0 )
+      {
+        dataCollection[ index ].render();
+      }
     }
   });
 
