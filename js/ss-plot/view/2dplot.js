@@ -32,9 +32,9 @@
       
       while( --index >= 0 )
       {
-        dataPoints.push( new XYData({
+        dataPoints.push( new SSPlot.View.XYData({
           model : this.model,
-          paper : paper,
+          paper : this.paper,
           data : dataModels[ index ] 
         }));
       }

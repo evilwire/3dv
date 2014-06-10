@@ -26,18 +26,22 @@ $(document).ready( function(){
     width: 800
   }),
   data = new SSPlot.Collection.XYDataCollection(),
+
   xyPlot = new SSPlot.Model.XYPlot({
     haxis : xAxis,
     vaxis : yAxis,
     bbox : bBox,
     data : data,
-  }),
-  xyPlotView = new SSPlot.View.XYPlot({
+  });
+
+  data.add(new SSPlot.Model.XYData({ x: 3, y: 4 }));
+  data.add(new SSPlot.Model.XYData({ x: 39, y: 25 }));
+
+  var xyPlotView = new SSPlot.View.XYPlot({
     paper : paper,
     model : xyPlot
   });
   xyPlot.getInitialValues();
-  xyPlotView.render();
 
   $( document ).on('select', function( event )
   {
@@ -49,6 +53,8 @@ $(document).ready( function(){
     event.preventDefault();
   } );
 
+  xyPlotView.render();
+/*
   var dataPt = new SSPlot.View.XYData({
     model : xyPlot,
     paper : paper,
@@ -70,6 +76,7 @@ $(document).ready( function(){
   dataPt.render();
 
   farDataPoint.render();
+*/
 } );
 
 })();
