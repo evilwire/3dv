@@ -25,10 +25,10 @@ div.canvas
 .canvas .logo
 {
   position: absolute;
-  right : -40px;
-  font: 300 90px/100px Open sans;
+  top: 0px;
+  right: 10px;
+  font: 300 70px/70px Open sans;
   color: #FFF;
-  margin: -85px 1em 0px 0px;
 }
 
 .yaxis.label, .xaxis.label {
