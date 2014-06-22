@@ -37,7 +37,7 @@
         xTicSize - parseInt( ( xratio - xleadTics ) * xTicSize ),
 
       yratio = yoffset / yTicSize,
-      yleadTics = Math.floor( xratio ),
+      yleadTics = Math.floor( yratio ),
       yStartingPoint = 
         yTicSize - parseInt( ( yratio - yleadTics ) * yTicSize );
 
