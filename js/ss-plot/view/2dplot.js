@@ -4,8 +4,18 @@
   SSPlot.SVGView.extend({
     initialize : function()
     {
-      console.log( this.paper );
-      var bbox = this.model.get('bbox');
+      var bbox = this.model.get('bbox'),
+      top = bbox.get('top'),
+      left = bbox.get('left'),
+      width = bbox.get('width'),
+      height = bbox.get('height');
+
+      this.$el.css({
+        top : String(top) + 'px',
+        left : String(left) + 'px',
+        width : String(width) + 'px',
+        height : String(height) + 'px'
+      });
 
       this.model.on('change', function( event )
       {

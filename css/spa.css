@@ -22,6 +22,11 @@ div.canvas-container
    right: 0px;
 }
 
+.canvas-container .canvas
+{
+  position: absolute;
+}
+
 .logo
 {
   position: absolute;

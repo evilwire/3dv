@@ -2,7 +2,7 @@
 {
 
 $(document).ready( function(){
-  var paper = Raphael($('.canvas')[0]),
+  var paper = Raphael($('.canvas')[0], '100%', '100%'),
   xRange = new SSPlot.Model.Range({ }), 
   xScale = new SSPlot.Model.Scale({ }),
   xAxis = new SSPlot.Model.Axis({
