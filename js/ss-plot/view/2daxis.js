@@ -7,8 +7,6 @@
     {
       var i = params.min,
           axesLabels = $('<div class="axis horizontal"></div>');
-
-
           ratio = params.offset / params.ticSize,
           leadTics = Math.floor( ratio ),
           startingPoint = 
@@ -21,7 +19,8 @@
                x += params.ticSize )
       {
         // create a label
-        var label = $('<div class="label"></div>').html(i);
+        var label = $('<div class="label"></div>')
+          .html("<div class='label-text'>" + String(i) + "</div>");
         axesLabels.append( label );
         label.css({
           left : String(x - 3) + 'px'
@@ -36,7 +35,7 @@
     'fixed' : function( params )
     {
       var i = params.min,
-      axesLabels = this.paper.set();
+      axesLabels = $('<div class="axis vertical"></div>');
       ratio = params.offset / params.ticSize,
       leadTics = Math.floor( ratio ),
       startingPoint = 
@@ -45,25 +44,18 @@
 
       this.svg.push( axesLabels );
       for( var y = params.bottom - startingPoint;
-               y > params.top; 
+               y > 0; 
                y -= params.ticSize )
       {
-        axesLabels.push(
-          this.paper.path( lineTemplate( {
-              x1 : params.left,
-              y1 : y,
-              x2 : params.left + 3,
-              y2 : y
-            } ) )
-          .attr({ stroke : '#aaa' } ) );
-        // draw the text
-        var label = 
-          this.paper.text( params.left - 10, y, String(i) )
-        axesLabels.push( label );
-
-        $( label.node ).attr( 'class', 'yaxis label' );
+        var label = $('<div class="label"></div>')
+          .html("<div class='label-text'>" + String(i) + "</div>");
+        axesLabels.append( label );
+        label.css({
+          top : String(y - 3) + 'px'
+        });
         i += params.increment;
       }
+      this.$el.append( axesLabels ); 
     }
   },
 
@@ -131,7 +123,7 @@
         increment : scale.get( 'increment' ),
         left : bbox.get( 'left' ),
         top : bbox.get( 'top' ),
-        bottom : bbox.get( 'top' ) + bbox.get('height'),
+        bottom : bbox.get('height'),
         min : this.model.getInitialValues().y
       } );
     } 
