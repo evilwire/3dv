@@ -86,6 +86,34 @@
       {
         dataCollection[ index ].render();
       }
+
+      var docMouseMove = function( event )
+      {
+        var deltaX = event.pageX - initX,
+            deltaY = event.pageY - initY;
+        
+      },
+
+      docMouseUp = function( event )
+      {
+        $( document ).off( 'mousemove', docMouseMove );
+        $( document ).off( 'mousemove', docMouseUp );
+
+        // shift 
+      },
+
+      initX,
+
+      initY;
+
+      this.$el.on( 'mousedown', 
+      function( event )
+      {
+        initX = event.pageX;
+        initY = event.pageY;
+        $( document ).on( 'mousemove', docMouseMove );
+        $( document ).on( 'mouseup', docMouseUp );
+      } );
     }
   });
 

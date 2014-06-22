@@ -25,6 +25,7 @@ div.canvas-container
 .canvas-container .canvas
 {
   position: absolute;
+  cursor : move;
 }
 
 .logo
@@ -60,6 +61,7 @@ svg
 .axis
 {
   position : absolute;
+  overflow : hidden;
 }
 
 .axis.horizontal
@@ -92,6 +94,11 @@ svg
 {
   margin-top: 2px;
   margin-left : 12px;
+}
+
+.axis.horizontal .label .label-text
+{
+  margin-left: -2px;
 }
 
 .axis.vertical .label .label-text
