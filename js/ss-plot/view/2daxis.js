@@ -6,34 +6,29 @@
     'fixed' : function( params )
     {
       var i = params.min,
-      axesLabels = this.paper.set(),
-      ratio = params.offset / params.ticSize,
-      leadTics = Math.floor( ratio ),
-      startingPoint = 
-        params.ticSize - parseInt( ( ratio - leadTics ) * 
-          params.ticSize );
+          axesLabels = $('<div class="axis horizontal"></div>');
+
+
+          ratio = params.offset / params.ticSize,
+          leadTics = Math.floor( ratio ),
+          startingPoint = 
+            params.ticSize - parseInt( ( ratio - leadTics ) * 
+              params.ticSize );
 
       this.svg.push( axesLabels );
-      for( var x = params.left + startingPoint; 
+      for( var x = startingPoint; 
                x < params.right; 
                x += params.ticSize )
       {
-        axesLabels.push(
-          this.paper.path( lineTemplate( {
-              x1 : x,
-              y1 : params.bottom + 3,
-              x2 : x,
-              y2 : params.bottom
-            } ) )
-          .attr({ stroke : '#aaa' } ) );
-        var label = 
-          this.paper.text( x, 
-            params.bottom + 10, String(i) )
-        axesLabels.push( label );
-
-        $( label.node ).attr( 'class', 'xaxis label' );
+        // create a label
+        var label = $('<div class="label"></div>').html(i);
+        axesLabels.append( label );
+        label.css({
+          left : String(x - 3) + 'px'
+        });
         i += params.increment;
       }
+      this.$el.append( axesLabels ); 
     }
   },
 
@@ -88,7 +83,6 @@
 
     render : function()
     {
-      /*
       // get the type of axis it is
       var bbox = this.model.get('bbox'),
       axis = this.model.get('haxis'),
@@ -101,10 +95,9 @@
         increment : scale.get('increment'),
         bottom : bbox.get('top') + bbox.get('height'),
         left : bbox.get('left'),
-        right : bbox.get('left') + bbox.get('width'),
+        right : bbox.get('width'),
         min : this.model.getInitialValues().x,
       } );
-      */
     },
   } );
 
@@ -124,7 +117,6 @@
 
     render : function()
     {
-      /*
       // get the type of axis it is
       var bbox = this.model.get('bbox'),
       axis = this.model.get('vaxis'),
@@ -142,7 +134,6 @@
         bottom : bbox.get( 'top' ) + bbox.get('height'),
         min : this.model.getInitialValues().y
       } );
-      */
     } 
   });
 
