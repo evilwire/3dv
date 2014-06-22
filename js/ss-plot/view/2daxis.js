@@ -88,6 +88,7 @@
 
     render : function()
     {
+      /*
       // get the type of axis it is
       var bbox = this.model.get('bbox'),
       axis = this.model.get('haxis'),
@@ -103,6 +104,7 @@
         right : bbox.get('left') + bbox.get('width'),
         min : this.model.getInitialValues().x,
       } );
+      */
     },
   } );
 
@@ -122,6 +124,7 @@
 
     render : function()
     {
+      /*
       // get the type of axis it is
       var bbox = this.model.get('bbox'),
       axis = this.model.get('vaxis'),
@@ -139,6 +142,7 @@
         bottom : bbox.get( 'top' ) + bbox.get('height'),
         min : this.model.getInitialValues().y
       } );
+      */
     } 
   });
 

@@ -26,10 +26,10 @@
       var coords = this.model.getPaperCoord( this.x, this.y ),
           bbox = this.model.get('bbox');
       
-      if( coords.x < bbox.get( 'left' ) ||
-          coords.y < bbox.get( 'top' ) ||
-          coords.x > bbox.get( 'left' ) + bbox.get( 'width' ) ||
-          coords.y > bbox.get( 'top' ) + bbox.get( 'height' ) )
+      if( coords.x < 0 || //bbox.get( 'left' ) ||
+          coords.y < 0 || //bbox.get( 'top' ) ||
+          coords.x > bbox.get( 'width' ) ||
+          coords.y > bbox.get( 'height' ) )
         return;
       
       var dot = this.paper.circle( coords.x, coords.y, 5 );

@@ -71,11 +71,10 @@
           xrange = this.get('haxis').get('range'),
           yscale = this.get('vaxis').get('scale'),
           yrange = this.get('vaxis').get('range'),
-          initX = this.get('bbox').get('left'),
-          initY = this.get('bbox').get('top') + this.get('bbox').get('height');
+          initY = this.get('bbox').get('height');
 
       return {
-        x : initX + parseInt( (xVal * xscale.get('ticSize') 
+        x : parseInt( (xVal * xscale.get('ticSize') 
           / xscale.get('increment')) + xrange.get('offset') ),
 
         y : initY - parseInt( (yVal * yscale.get('ticSize') 

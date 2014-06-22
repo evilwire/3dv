@@ -34,7 +34,6 @@ div.canvas-container
   right: 10px;
   font: 300 70px/70px Open sans;
   color: #FFF;
-  z-index : 2;
 }
 
 .yaxis.label, .xaxis.label {
