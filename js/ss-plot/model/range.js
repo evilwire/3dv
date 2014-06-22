@@ -5,7 +5,7 @@
       min : 0,
       max : 40,
       offset : 10,
-      buffer : 500
+      buffer : 1920
     },
 
     validate : function()

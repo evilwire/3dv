@@ -11,7 +11,7 @@ $(document).ready( function(){
     label : 'p',
   }),
 
-  yRange = new SSPlot.Model.Range({ offset : 200 }), 
+  yRange = new SSPlot.Model.Range({ }), 
   yScale = new SSPlot.Model.Scale({ }),
   yAxis = new SSPlot.Model.Axis({
     scale : yScale,
@@ -41,6 +41,7 @@ $(document).ready( function(){
     paper : paper,
     model : xyPlot
   });
+
   xyPlot.getInitialValues();
 
   $( document ).on('select', function( event )

@@ -5,17 +5,17 @@
   HAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var i = params.min,
+      var i = params.min - parseInt( params.buffer / params.ticSize ),
           axesLabels = $('<div class="axis horizontal"></div>');
           ratio = params.offset / params.ticSize,
           leadTics = Math.floor( ratio ),
           startingPoint = 
             params.ticSize - parseInt( ( ratio - leadTics ) * 
-              params.ticSize );
+              params.ticSize ) - params.buffer;
 
       this.svg.push( axesLabels );
       for( var x = startingPoint; 
-               x < params.right; 
+               x < params.right + params.buffer; 
                x += params.ticSize )
       {
         // create a label
@@ -79,11 +79,13 @@
       var bbox = this.model.get('bbox'),
       axis = this.model.get('haxis'),
       scale = axis.get('scale');
+
       HAxisDrawMethods[ scale.get( 'type' ) ].call( this, 
       {
         ticSize : scale.get('ticSize'),
         label : axis.get('label'),
         offset : axis.get('range').get('offset'),
+        buffer : axis.get('range').get('buffer'),
         increment : scale.get('increment'),
         bottom : bbox.get('top') + bbox.get('height'),
         left : bbox.get('left'),

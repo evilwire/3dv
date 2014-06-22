@@ -53,6 +53,11 @@ svg
   position: absolute;
 }
 
+svg circle
+{
+  cursor : default;
+}
+
 .grid.hline, .grid.vline {
   stroke : #000;
   stroke-dasharray : 1,4;
