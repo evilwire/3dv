@@ -10,7 +10,7 @@ html, body
    /* overflow-x: hidden; */
 }
 
-div.canvas
+div.canvas-container
 {
    position: absolute;
    background-color: RGB(230, 230, 230);
@@ -22,13 +22,14 @@ div.canvas
    right: 0px;
 }
 
-.canvas .logo
+.logo
 {
   position: absolute;
   top: 0px;
   right: 10px;
   font: 300 70px/70px Open sans;
   color: #FFF;
+  z-index : 2;
 }
 
 .yaxis.label, .xaxis.label {

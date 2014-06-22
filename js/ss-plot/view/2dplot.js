@@ -4,6 +4,9 @@
   SSPlot.SVGView.extend({
     initialize : function()
     {
+      console.log( this.paper );
+      var bbox = this.model.get('bbox');
+
       this.model.on('change', function( event )
       {
         this.render();

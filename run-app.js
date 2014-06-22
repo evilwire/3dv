@@ -54,29 +54,6 @@ $(document).ready( function(){
   } );
 
   xyPlotView.render();
-/*
-  var dataPt = new SSPlot.View.XYData({
-    model : xyPlot,
-    paper : paper,
-    data : new SSPlot.Model.XYData({
-      x : 3,
-      y : 4
-    })
-  }),
-
-  farDataPoint = new SSPlot.View.XYData({
-    model : xyPlot,
-    paper : paper,
-    data : new SSPlot.Model.XYData({
-      x : 39,
-      y : 25
-    })
-  });
-
-  dataPt.render();
-
-  farDataPoint.render();
-*/
 } );
 
 })();
