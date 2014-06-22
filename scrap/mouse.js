@@ -10,7 +10,7 @@ $( document ).ready( function( event )
   });
 
   // create the dots
-  for( var i = 0; i < 56; i++ )
+  for( var i = -50; i < 56; i++ )
     for( var j = 0; j < 40; j++ )
     {
       var circle = paper.circle(
@@ -32,6 +32,8 @@ $( document ).ready( function( event )
     
     paper.setViewBox( left - deltaX, 
       top - deltaY, 150, 150, false);
+
+    console.log( left - deltaX );
   },
 
   documentMouseUp = function( event )
