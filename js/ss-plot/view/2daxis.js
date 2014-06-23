@@ -37,6 +37,8 @@
     'fixed' : function( params )
     {
       var i = params.min,
+      axesViewPort = 
+        $('<div class="axis-container vertical"></div>'),
       axesLabels = $('<div class="axis vertical"></div>');
       ratio = params.offset / params.ticSize,
       leadTics = Math.floor( ratio ),
@@ -57,7 +59,7 @@
         });
         i += params.increment;
       }
-      this.$el.append( axesLabels ); 
+      this.$el.append( axesViewPort.append( axesLabels ) ); 
     }
   },
 
