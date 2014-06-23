@@ -61,7 +61,7 @@
     }
   },
 
-  redrawVAxis = function( event )
+  redrawHAxis = function( event )
   {
     // scale?
 
@@ -81,6 +81,25 @@
     }
   },
 
+  redrawVAxis = function( event )
+  {
+
+    // range?
+    if( event.type.indexOf('range') >= 0 )
+    {
+      var range = event.target.get('range'),
+
+      offset = range.get('offset'),
+      initialOffset = range.get('initialOffset'),
+
+      delta = offset - initialOffset;
+
+      $('.axis.vertical').css({
+        'transform' : 'translate(0px,' + String( delta ) + 'px)'
+      });
+    }
+  },
+
   HAxis = SSPlot.View.HAxis = 
   SSPlot.SVGView.extend( {
     initialize : function()
@@ -94,7 +113,7 @@
           if( event.type.indexOf('haxis') < 0 )
             return;
 
-          redrawVAxis.call( _this, event )
+          redrawHAxis.call( _this, event )
         });
     },
 
@@ -130,7 +149,10 @@
       this.model.on( 'change', 
         function( event )
         {
-          //_this.render();
+          if( event.type.indexOf('vaxis') < 0 )
+            return;
+
+          redrawVAxis.call( _this, event )
         });
     },
 
