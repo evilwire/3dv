@@ -75,6 +75,9 @@
 
       deltaX = offset - initialOffset;
 
+      $('.axis.horizontal').css({
+        'transform' : 'translate(' + String( deltaX ) + 'px, 0px)'
+      });
     }
   },
 

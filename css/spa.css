@@ -59,7 +59,7 @@ svg circle
 }
 
 .grid.hline, .grid.vline {
-  stroke : #fff;
+  stroke : #000;
   stroke-dasharray : 1,4;
 }
 
@@ -83,6 +83,22 @@ svg circle
   left : -20px;
   width : 20px;
   height : 100%;
+}
+
+.axis
+{
+  position : absolute;
+}
+
+.axis.horizontal
+{
+  left : 0px;
+  transform : translateX(0);
+}
+
+.axis.vertical
+{
+  display : none;
 }
 
 .axis .label

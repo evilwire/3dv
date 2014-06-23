@@ -94,14 +94,10 @@
         var deltaX = event.pageX - initX,
             deltaY = event.pageY - initY;
         
-        xOffset = _this.model.get('haxis')
-                      .get('range')
-                      .get('offset');
-
         // update the
         _this.model.get('haxis')
             .get('range')
-            .set('offset', xOffset + deltaX );
+            .set('offset', initOffset + deltaX );
       },
 
       docMouseUp = function( event )
@@ -110,6 +106,8 @@
         $( document ).off( 'mousemove', docMouseUp );
       },
 
+      initOffset,
+
       initX,
 
       initY;
@@ -117,6 +115,10 @@
       this.$el.on( 'mousedown', 
       function( event )
       {
+        initOffset = _this.model.get('haxis')
+                         .get('range')
+                         .get('offset');
+
         initX = event.pageX;
         initY = event.pageY;
         $( document ).on( 'mousemove', docMouseMove );
