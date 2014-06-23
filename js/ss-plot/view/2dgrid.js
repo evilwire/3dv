@@ -13,7 +13,7 @@
       this.model.on( 'change', 
         function( event )
         {
-          _this.render();
+          //_this.render();
         });
     },
 

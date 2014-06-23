@@ -6,7 +6,9 @@
     'fixed' : function( params )
     {
       var i = params.min - parseInt( params.buffer / params.ticSize ),
-          axesLabels = $('<div class="axis horizontal"></div>');
+          axesViewPort = 
+            $('<div class="axis-container horizontal"></div>'),
+          axesLabels = $('<div class="axis horizontal"></div>'),
           ratio = params.offset / params.ticSize,
           leadTics = Math.floor( ratio ),
           startingPoint = 
@@ -27,7 +29,7 @@
         });
         i += params.increment;
       }
-      this.$el.append( axesLabels ); 
+      this.$el.append( axesViewPort.append( axesLabels ) ); 
     }
   },
 
@@ -59,6 +61,23 @@
     }
   },
 
+  redrawVAxis = function( event )
+  {
+    // scale?
+
+    // range?
+    if( event.type.indexOf('range') >= 0 )
+    {
+      var range = event.target.get('range'),
+
+      offset = range.get('offset'),
+      initialOffset = range.get('initialOffset'),
+
+      deltaX = offset - initialOffset;
+
+    }
+  },
+
   HAxis = SSPlot.View.HAxis = 
   SSPlot.SVGView.extend( {
     initialize : function()
@@ -69,7 +88,10 @@
       this.model.on( 'change', 
         function( event )
         {
-          _this.render();
+          if( event.type.indexOf('haxis') < 0 )
+            return;
+
+          redrawVAxis.call( _this, event )
         });
     },
 
@@ -105,7 +127,7 @@
       this.model.on( 'change', 
         function( event )
         {
-          _this.render();
+          //_this.render();
         });
     },
 

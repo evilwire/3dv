@@ -19,7 +19,7 @@
 
       this.model.on('change', function( event )
       {
-        this.render();
+        //this.render();
       } );
 
       var xAxisView = new SSPlot.View.HAxis({
@@ -87,19 +87,27 @@
         dataCollection[ index ].render();
       }
 
+      var _this = this;
+
       var docMouseMove = function( event )
       {
         var deltaX = event.pageX - initX,
             deltaY = event.pageY - initY;
         
+        xOffset = _this.model.get('haxis')
+                      .get('range')
+                      .get('offset');
+
+        // update the
+        _this.model.get('haxis')
+            .get('range')
+            .set('offset', xOffset + deltaX );
       },
 
       docMouseUp = function( event )
       {
         $( document ).off( 'mousemove', docMouseMove );
         $( document ).off( 'mousemove', docMouseUp );
-
-        // shift 
       },
 
       initX,

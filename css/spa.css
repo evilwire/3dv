@@ -55,28 +55,29 @@ svg
 
 svg circle
 {
-  cursor : default;
+  cursor : pointer;
 }
 
 .grid.hline, .grid.vline {
-  stroke : #000;
+  stroke : #fff;
   stroke-dasharray : 1,4;
 }
 
-.axis
+.axis-container
 {
   position : absolute;
   overflow : hidden;
+  cursor : default;
 }
 
-.axis.horizontal
+.axis-container.horizontal
 {
   width    : 100%;
   bottom   : -18px;
   height   : 20px;
 }
 
-.axis.vertical
+.axis-container.vertical
 {
   top : 0px;
   left : -20px;
@@ -89,10 +90,16 @@ svg circle
   position : absolute;
   font-size: 10px;
   border-radius: 2px;
-  background-color: RGBA(20, 20, 20, 1);
+  background-color: RGBA(20, 20, 20, .1);
   width : 4px;
   height : 4px;
   display: inline-block;
+  color : #888;
+}
+
+.axis .label:hover
+{
+  color : #333;
 }
 
 .axis.vertical .label

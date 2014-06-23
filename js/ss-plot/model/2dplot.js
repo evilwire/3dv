@@ -16,8 +16,11 @@
         dependentObj.on( 'change', 
           function( event )
           {
+            var type = event.type || [];
+            type.push( dependentName );
+
             $.extend( event, {
-              type : dependentName,
+              type : type,
               target : dependentObj
             } );
 

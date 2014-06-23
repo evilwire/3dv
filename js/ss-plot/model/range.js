@@ -15,7 +15,7 @@
     },
 
     initialize : function(){
-
+      this.set('initialOffset', this.get('offset'));
     }
   });
 
@@ -57,7 +57,7 @@
         function( event )
         {
           $.extend( event, {
-            type  : 'scale',
+            type  : ['scale'],
             target : this.get('scale')
           });
           _this.trigger('change', event );
@@ -67,7 +67,7 @@
         function( event )
         {
           $.extend( event, {
-            type  : 'range',
+            type  : ['range'],
             target : this.get('range')
           });
           _this.trigger('change', event );
