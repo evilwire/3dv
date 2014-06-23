@@ -8,8 +8,12 @@
 
          index = dependents.length;
 
+      console.log( this.get( 'vaxis' ) );
+
       while( --index >= 0 )
       {
+        (function()
+        {
         var dependentName = dependents[ index ],
             dependentObj = this.get( dependentName );
 
@@ -17,6 +21,7 @@
           function( event )
           {
             var type = event.type || [];
+
             type.push( dependentName );
 
             $.extend( event, {
@@ -26,6 +31,7 @@
 
             _this.trigger('change', event );
           } );
+        }).call( this );
       }
 
       this.get( 'data' ).on( 'add',

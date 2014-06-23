@@ -151,6 +151,7 @@
       this.model.on( 'change', 
         function( event )
         {
+          console.log( event.target );
           if( event.type.indexOf('vaxis') < 0 )
             return;
 

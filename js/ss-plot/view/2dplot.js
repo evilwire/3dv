@@ -97,7 +97,11 @@
         // update the
         _this.model.get('haxis')
             .get('range')
-            .set('offset', initOffset + deltaX );
+            .set('offset', initOffsetX + deltaX );
+
+        _this.model.get('vaxis')
+            .get('range')
+            .set('offset', initOffsetY + deltaY );
       },
 
       docMouseUp = function( event )
@@ -106,7 +110,9 @@
         $( document ).off( 'mousemove', docMouseUp );
       },
 
-      initOffset,
+      initOffsetX,
+
+      initOffsetY,
 
       initX,
 
@@ -115,7 +121,11 @@
       this.$el.on( 'mousedown', 
       function( event )
       {
-        initOffset = _this.model.get('haxis')
+        initOffsetX = _this.model.get('haxis')
+                         .get('range')
+                         .get('offset');
+
+        initOffsetY = _this.model.get('vaxis')
                          .get('range')
                          .get('offset');
 
