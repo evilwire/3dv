@@ -36,7 +36,7 @@
   VAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var i = params.min,
+      var i = params.min - parseInt( params.buffer / params.ticSize),
       axesViewPort = 
         $('<div class="axis-container vertical"></div>'),
       axesLabels = $('<div class="axis vertical"></div>');
@@ -44,11 +44,11 @@
       leadTics = Math.floor( ratio ),
       startingPoint = 
         params.ticSize - parseInt( ( ratio - leadTics ) * 
-          params.ticSize );
+          params.ticSize ) - params.buffer;
 
       this.svg.push( axesLabels );
       for( var y = params.bottom - startingPoint;
-               y > 0; 
+               y > -params.buffer; 
                y -= params.ticSize )
       {
         var label = $('<div class="label"></div>')
@@ -151,7 +151,6 @@
       this.model.on( 'change', 
         function( event )
         {
-          console.log( event.target );
           if( event.type.indexOf('vaxis') < 0 )
             return;
 
@@ -172,6 +171,7 @@
         ticSize : scale.get('ticSize'),
         label : axis.get( 'label' ),
         offset : axis.get('range').get('offset'),
+        buffer : axis.get('range').get('buffer'),
         increment : scale.get( 'increment' ),
         left : bbox.get( 'left' ),
         top : bbox.get( 'top' ),

@@ -8,8 +8,6 @@
 
          index = dependents.length;
 
-      console.log( this.get( 'vaxis' ) );
-
       while( --index >= 0 )
       {
         (function()
