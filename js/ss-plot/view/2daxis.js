@@ -42,23 +42,31 @@
         axesLabels = $('<div class="axis' + orientation + '"></div>'),
         ratio = params.offset / params.ticSize,
         leadTics = Math.floor( ratio ),
-        startingPoint = 
+        x = ( orientation == 'horizontal')?
           params.ticSize - parseInt( ( ratio - leadTics ) * 
-            params.ticSize ) - params.buffer;
+            params.ticSize ) - params.buffer :
+          params.bottom - params.ticSize + 
+            parseInt( ( ratio - leadTics ) * 
+            params.ticSize ) + params.buffer,
 
-    this.svg.push( axesLabels );
-    for( var x = startingPoint; 
-             x < params.right + params.buffer; 
-             x += params.ticSize )
+        condition = ( orientation == 'horizontal' )?
+          function( x ){ return x < ( params.right + params.buffer ); } :
+          function( y ){ return y > -params.buffer; },
+
+        increment = ( orientation == 'horizontal' )?
+          params.ticSize : -params.ticSize,
+
+        cssAttr = ( orientation == 'horizontal' )?
+          'left' : 'top';
+    
+    while( condition.call( null, x ) )
     {
-      // create a label
       var label = $('<div class="label"></div>')
         .html("<div class='label-text'>" + String(i) + "</div>");
       axesLabels.append( label );
-      label.css({
-        left : String(x - 3) + 'px'
-      });
+      label.css( cssAttr, String(x - 3) + 'px' );
       i += params.increment;
+      x += increment;
     }
     this.$el.append( axesViewPort.append( axesLabels ) ); 
   },
