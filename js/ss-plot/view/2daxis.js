@@ -5,31 +5,11 @@
   HAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var i = params.min - parseInt( params.buffer / params.ticSize ),
-          axesViewPort = 
-            $('<div class="axis-container horizontal"></div>'),
-          axesLabels = $('<div class="axis horizontal"></div>'),
-          ratio = params.offset / params.ticSize,
-          leadTics = Math.floor( ratio ),
-          startingPoint = 
-            params.ticSize - parseInt( ( ratio - leadTics ) * 
-              params.ticSize ) - params.buffer;
+      $.extend( params, {
+        orientation : 'horizontal',
+      } );
 
-      this.svg.push( axesLabels );
-      for( var x = startingPoint; 
-               x < params.right + params.buffer; 
-               x += params.ticSize )
-      {
-        // create a label
-        var label = $('<div class="label"></div>')
-          .html("<div class='label-text'>" + String(i) + "</div>");
-        axesLabels.append( label );
-        label.css({
-          left : String(x - 3) + 'px'
-        });
-        i += params.increment;
-      }
-      this.$el.append( axesViewPort.append( axesLabels ) ); 
+      FixedAxisDraw.call( this, params );
     }
   },
 
@@ -38,8 +18,8 @@
     var orientation = params.orientation,
         i = params.min - parseInt( params.buffer / params.ticSize ),
         axesViewPort = 
-          $('<div class="axis-container' + orientation + '"></div>'),
-        axesLabels = $('<div class="axis' + orientation + '"></div>'),
+          $('<div class="axis-container ' + orientation + '"></div>'),
+        axesLabels = $('<div class="axis ' + orientation + '"></div>'),
         ratio = params.offset / params.ticSize,
         leadTics = Math.floor( ratio ),
         x = ( orientation == 'horizontal')?
@@ -74,30 +54,11 @@
   VAxisDrawMethods = {
     'fixed' : function( params )
     {
-      var i = params.min - parseInt( params.buffer / params.ticSize),
-      axesViewPort = 
-        $('<div class="axis-container vertical"></div>'),
-      axesLabels = $('<div class="axis vertical"></div>');
-      ratio = params.offset / params.ticSize,
-      leadTics = Math.floor( ratio ),
-      startingPoint = 
-        params.ticSize - parseInt( ( ratio - leadTics ) * 
-          params.ticSize ) - params.buffer;
+      $.extend( params, {
+        orientation : 'vertical',
+      } );
 
-      this.svg.push( axesLabels );
-      for( var y = params.bottom - startingPoint;
-               y > -params.buffer; 
-               y -= params.ticSize )
-      {
-        var label = $('<div class="label"></div>')
-          .html("<div class='label-text'>" + String(i) + "</div>");
-        axesLabels.append( label );
-        label.css({
-          top : String(y - 3) + 'px'
-        });
-        i += params.increment;
-      }
-      this.$el.append( axesViewPort.append( axesLabels ) ); 
+      FixedAxisDraw.call( this, params );
     }
   },
 
