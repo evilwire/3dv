@@ -33,6 +33,36 @@
     }
   },
 
+  FixedAxisDraw = function( params )
+  {
+    var orientation = params.orientation,
+        i = params.min - parseInt( params.buffer / params.ticSize ),
+        axesViewPort = 
+          $('<div class="axis-container' + orientation + '"></div>'),
+        axesLabels = $('<div class="axis' + orientation + '"></div>'),
+        ratio = params.offset / params.ticSize,
+        leadTics = Math.floor( ratio ),
+        startingPoint = 
+          params.ticSize - parseInt( ( ratio - leadTics ) * 
+            params.ticSize ) - params.buffer;
+
+    this.svg.push( axesLabels );
+    for( var x = startingPoint; 
+             x < params.right + params.buffer; 
+             x += params.ticSize )
+    {
+      // create a label
+      var label = $('<div class="label"></div>')
+        .html("<div class='label-text'>" + String(i) + "</div>");
+      axesLabels.append( label );
+      label.css({
+        left : String(x - 3) + 'px'
+      });
+      i += params.increment;
+    }
+    this.$el.append( axesViewPort.append( axesLabels ) ); 
+  },
+
   VAxisDrawMethods = {
     'fixed' : function( params )
     {
