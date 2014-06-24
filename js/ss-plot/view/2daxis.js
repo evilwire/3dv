@@ -2,17 +2,6 @@
 {
   var lineTemplate = _.template('M<%= x1 %> <%= y1 %>L<%= x2 %> <%= y2 %>'),
 
-  HAxisDrawMethods = {
-    'fixed' : function( params )
-    {
-      $.extend( params, {
-        orientation : 'horizontal',
-      } );
-
-      FixedAxisDraw.call( this, params );
-    }
-  },
-
   FixedAxisDraw = function( params )
   {
     var orientation = params.orientation,
@@ -49,6 +38,17 @@
       x += increment;
     }
     this.$el.append( axesViewPort.append( axesLabels ) ); 
+  },
+
+  HAxisDrawMethods = {
+    'fixed' : function( params )
+    {
+      $.extend( params, {
+        orientation : 'horizontal',
+      } );
+
+      FixedAxisDraw.call( this, params );
+    }
   },
 
   VAxisDrawMethods = {
@@ -132,9 +132,9 @@
         offset : axis.get('range').get('offset'),
         buffer : axis.get('range').get('buffer'),
         increment : scale.get('increment'),
-        bottom : bbox.get('top') + bbox.get('height'),
         left : bbox.get('left'),
         right : bbox.get('width'),
+        bottom : bbox.get('top') + bbox.get('height'),
         min : this.model.getInitialValues().x,
       } );
     },
@@ -155,10 +155,8 @@
       this.model.on( 'change', 
         function( event )
         {
-          if( event.type.indexOf('vaxis') < 0 )
-            return;
-
-          redrawVAxis.call( _this, event )
+          if( event.type.indexOf('vaxis') > 0 )
+            redrawVAxis.call( _this, event )
         });
     },
 
