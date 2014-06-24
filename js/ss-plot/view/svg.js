@@ -122,13 +122,16 @@
 
       // extend methods
       for( methodName in svgSetup )
-        Object.defineProperty( svgBase, methodName,
-        { 
-          get : function()
+        (function( methodName )
+        {
+          Object.defineProperty( svgBase, methodName,
           { 
-            return svgSetup[ methodName ]; 
-          }
-        });
+            get : function()
+            { 
+              return svgSetup[ methodName ]; 
+            }
+          });
+        })( methodName );
 
       return svgBase;
     }
