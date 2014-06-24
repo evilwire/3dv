@@ -139,6 +139,11 @@
         min : this.model.getInitialValues().x,
       } );
     },
+
+    updateBuffer : function( change )
+    {
+      console.log( change );
+    }
   } );
 
   var VAxis = SSPlot.View.VAxis =
@@ -178,7 +183,12 @@
         bottom : bbox.get('height'),
         min : this.model.getInitialValues().y
       } );
-    } 
+    },
+
+    updateBuffer : function( change )
+    {
+
+    }
   });
 
 })( Raphael, _ )
