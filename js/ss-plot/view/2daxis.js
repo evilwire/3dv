@@ -141,7 +141,16 @@
 
     updateBuffer : function( change )
     {
-      console.log( change );
+      // based on change figure out how many of the
+      // labels need to be removed from the buffer zone...
+      var axis = this.model.get('haxis'),
+      scale = axis.get('scale'),
+      ticSize = scale.get('ticSize');
+
+      var numRemove = parseInt( change / ticSize ) + 1;
+
+      // ...and how many labels need to be added
+
     }
   } );
 
