@@ -107,7 +107,10 @@
       docMouseUp = function( event )
       {
         $( document ).off( 'mousemove', docMouseMove );
-        $( document ).off( 'mousemove', docMouseUp );
+        $( document ).off( 'mouseup', docMouseUp );
+
+        this.xaxis.updateBuffer( event.pageX - initX );
+        this.yaxis.updateBuffer( event.pageY - initY ); 
       },
 
       initOffsetX,
@@ -136,5 +139,4 @@
       } );
     }
   });
-
 })( Raphael );
