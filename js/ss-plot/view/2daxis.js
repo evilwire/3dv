@@ -149,7 +149,20 @@
 
       var numRemove = parseInt( change / ticSize ) + 1;
 
+      var cutoff = this.model.get('bbox').get('width') + 
+        axis.get('range').get('buffer') -
+        axis.get('range').get('offset');
+
+      console.log( cutoff );
+
       // ...and how many labels need to be added
+      /*
+      console.log( $('.axis.horizontal .label').filter(
+      function( index, element )
+      {
+        return $( element ).position().left > 192;
+      } ) );
+      */
 
     }
   } );
