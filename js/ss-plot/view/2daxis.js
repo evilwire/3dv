@@ -153,7 +153,10 @@
 
       var cutoff = this.model.get('bbox').get('width') + 
         axis.get('range').get('buffer') -
-        axis.get('range').get('offset');
+        axis.get('range').get('offset'),
+        labelsCount = $('.axis.horizontal .label').length;
+        lastLabel = parseInt( 
+          $('.axis.horizontal .label .label-text')[labelsCount - 1].innerHTML );
 
       // calculate which labels need to be removed
       var removeCount = parseInt( change / ticSize );
@@ -162,6 +165,9 @@
 
       if( removeCount < 0 )
       {
+
+        console.log( lastLabel );
+
         //remove from the end
         var removedLabels = $('.axis.horizontal .label')
           .slice(0, -removeCount).each( function( index, element )
@@ -173,7 +179,9 @@
             //$element.remove();
             $element.css({ 
               left : String( desiredLeft ) + 'px'
-            });
+            })
+            .children('.label-text')
+            .html( String( lastLabel + index + 1 ) );
           } )
           .remove();
 
