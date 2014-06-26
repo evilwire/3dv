@@ -165,11 +165,13 @@
 
       if( removeCount < 0 )
       {
+        var labelsCount = $('.axis.horizontal .label').length,
+            lastLabel = 
+              parseInt( 
+                $('.axis.horizontal .label .label-text')[labelsCount - 1]
+                .innerHTML ),
 
-        console.log( lastLabel );
-
-        //remove from the end
-        var removedLabels = $('.axis.horizontal .label')
+        removedLabels = $('.axis.horizontal .label')
           .slice(0, -removeCount).each( function( index, element )
           {
             var $element = $( element ),
@@ -186,10 +188,32 @@
           .remove();
 
         $('.axis.horizontal').append( removedLabels );
-        
       }
       else
       {
+        var firstLabel = 
+          parseInt(
+            $('.axis.horizontal .label .label-text')[0]
+            .innerHTML ),
+
+        removedLabels = $('.axis.horizontal .label')
+          .slice(-removeCount).each( function( index, element )
+          {
+            var $element = $( element ),
+
+            desiredLeft = $element.position().left - bufferedWidth;
+
+            //$element.remove();
+            $element.css({ 
+              left : String( desiredLeft ) + 'px'
+            })
+            .children('.label-text')
+            .html( String( firstLabel + index - removeCount ) );
+          } )
+          .remove();
+
+        $('.axis.horizontal').prepend( removedLabels );
+
       }
 
       // ...and how many labels need to be added
