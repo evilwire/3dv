@@ -146,6 +146,8 @@
       var axis = this.model.get('haxis'),
       scale = axis.get('scale'),
       ticSize = scale.get('ticSize');
+      bufferedWidth = 2 * axis.get('range').get('buffer') + 
+        this.model.get('bbox').get('width');
 
       var numRemove = parseInt( change / ticSize ) + 1;
 
@@ -161,7 +163,17 @@
       if( removeCount < 0 )
       {
         //remove from the end
-        console.log( $('.axis.horizontal .label').slice(0, -removeCount) );
+        $('.axis.horizontal .label').slice(0, -removeCount).each( function( index, element )
+        {
+          var $element = $( element ),
+
+          desiredLeft = $element.position().left + bufferedWidth;
+
+          //$element.remove();
+          $element.css({ 
+            left : String( desiredLeft ) + 'px'
+          });
+        } );
       }
       else
       {
