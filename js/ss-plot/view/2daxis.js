@@ -153,7 +153,19 @@
         axis.get('range').get('buffer') -
         axis.get('range').get('offset');
 
-      console.log( cutoff );
+      // calculate which labels need to be removed
+      var removeCount = parseInt( change / ticSize );
+
+      if( removeCount == 0 ) return;
+
+      if( removeCount < 0 )
+      {
+        //remove from the end
+        console.log( $('.axis.horizontal .label').slice(0, -removeCount) );
+      }
+      else
+      {
+      }
 
       // ...and how many labels need to be added
       /*
