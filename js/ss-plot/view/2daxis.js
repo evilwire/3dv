@@ -163,17 +163,22 @@
       if( removeCount < 0 )
       {
         //remove from the end
-        $('.axis.horizontal .label').slice(0, -removeCount).each( function( index, element )
-        {
-          var $element = $( element ),
+        var removedLabels = $('.axis.horizontal .label')
+          .slice(0, -removeCount).each( function( index, element )
+          {
+            var $element = $( element ),
 
-          desiredLeft = $element.position().left + bufferedWidth;
+            desiredLeft = $element.position().left + bufferedWidth;
 
-          //$element.remove();
-          $element.css({ 
-            left : String( desiredLeft ) + 'px'
-          });
-        } );
+            //$element.remove();
+            $element.css({ 
+              left : String( desiredLeft ) + 'px'
+            });
+          } )
+          .remove();
+
+        $('.axis.horizontal').append( removedLabels );
+        
       }
       else
       {
