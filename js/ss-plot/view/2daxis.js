@@ -215,16 +215,6 @@
         $('.axis.horizontal').prepend( removedLabels );
 
       }
-
-      // ...and how many labels need to be added
-      /*
-      console.log( $('.axis.horizontal .label').filter(
-      function( index, element )
-      {
-        return $( element ).position().left > 192;
-      } ) );
-      */
-
     }
   } );
 
@@ -291,6 +281,59 @@
 
       console.log( $('.axis.vertical .label')[ labelCount - 1].offsetTop );
       console.log( removeCount );
+
+      if( removeCount > 0 )
+      {
+        var labelsCount = $('.axis.vertical .label').length,
+            lastLabel = 
+              parseInt( 
+                $('.axis.vertical .label .label-text')[labelsCount - 1]
+                .innerHTML ),
+
+        removedLabels = $( '.axis.horizontal .label' )
+          .slice(0, -removeCount).each( function( index, element )
+          {
+            var $element = $( element ),
+
+            desiredLeft = $element.position().left + bufferedWidth;
+
+            //$element.remove();
+            $element.css({ 
+              left : String( desiredLeft ) + 'px'
+            })
+            .children('.label-text')
+            .html( String( lastLabel + index + 1 ) );
+          } )
+          .remove();
+
+        $('.axis.vertical').append( removedLabels );
+      }
+      else
+      {
+        var firstLabel = 
+          parseInt(
+            $('.axis.vertical .label .label-text')[0]
+            .innerHTML ),
+
+        removedLabels = $('.axis.vertical .label')
+          .slice(-removeCount).each( function( index, element )
+          {
+            var $element = $( element ),
+
+            desiredLeft = $element.position().left - bufferedWidth;
+
+            //$element.remove();
+            $element.css({ 
+              left : String( desiredLeft ) + 'px'
+            })
+            .children('.label-text')
+            .html( String( firstLabel + index - removeCount ) );
+          } )
+          .remove();
+
+        $('.axis.horizontal').prepend( removedLabels );
+
+      }
 
     }
   });
