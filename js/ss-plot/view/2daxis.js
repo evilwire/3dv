@@ -290,8 +290,8 @@
                 $('.axis.vertical .label .label-text')[labelsCount - 1]
                 .innerHTML ),
 
-        removedLabels = $( '.axis.horizontal .label' )
-          .slice(0, -removeCount).each( function( index, element )
+        removedLabels = $( '.axis.vertical .label' )
+          .slice(0, removeCount).each( function( index, element )
           {
             var $element = $( element ),
 
@@ -316,7 +316,7 @@
             .innerHTML ),
 
         removedLabels = $('.axis.vertical .label')
-          .slice(-removeCount).each( function( index, element )
+          .slice(removeCount).each( function( index, element )
           {
             var $element = $( element ),
 
@@ -331,7 +331,7 @@
           } )
           .remove();
 
-        $('.axis.horizontal').prepend( removedLabels );
+        $('.axis.vertical').prepend( removedLabels );
 
       }
 
