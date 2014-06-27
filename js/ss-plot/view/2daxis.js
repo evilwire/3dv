@@ -267,7 +267,25 @@
 
     updateBuffer : function( change )
     {
+      var axis = this.model.get('haxis'),
+      scale = axis.get('scale'),
+      ticSize = scale.get('ticSize');
+      bufferedWidth = 2 * axis.get('range').get('buffer') + 
+        this.model.get('bbox').get('width');
 
+      var numRemove = parseInt( change / ticSize ) + 1;
+
+      var cutoff = this.model.get('bbox').get('width') + 
+        axis.get('range').get('buffer') -
+        axis.get('range').get('offset'),
+        labelsCount = $('.axis.horizontal .label').length;
+        lastLabel = parseInt( 
+          $('.axis.horizontal .label .label-text')[labelsCount - 1].innerHTML );
+
+      // calculate which labels need to be removed
+      var removeCount = parseInt( change / ticSize );
+
+      if( removeCount == 0 ) return;
     }
   });
 
