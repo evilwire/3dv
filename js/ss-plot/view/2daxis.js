@@ -260,12 +260,12 @@
       var axis = this.model.get('vaxis'),
       scale = axis.get('scale'),
       ticSize = scale.get('ticSize');
-      bufferedWidth = 2 * axis.get('range').get('buffer') + 
+      bufferedHeight = 2 * axis.get('range').get('buffer') + 
         this.model.get('bbox').get('height');
 
-      var numRemove = parseInt( change / ticSize ) + 1;
+      var numRemove = parseInt( change / ticSize ) + 1,
 
-      var cutoff = this.model.get('bbox').get('height') + 
+        cutoff = this.model.get('bbox').get('height') + 
         axis.get('range').get('buffer') -
         axis.get('range').get('offset'),
         labelsCount = $('.axis.vertical .label').length;
@@ -278,9 +278,6 @@
       if( removeCount == 0 ) return;
 
       var labelCount = $('.axis.vertical .label').length;
-
-      console.log( $('.axis.vertical .label')[ labelCount - 1].offsetTop );
-      console.log( removeCount );
 
       if( removeCount > 0 )
       {
@@ -295,11 +292,12 @@
           {
             var $element = $( element ),
 
-            desiredLeft = $element.position().left + bufferedWidth;
+            desiredTop = $element.position().top - bufferedHeight;
+            console.log( desiredTop );
 
             //$element.remove();
             $element.css({ 
-              left : String( desiredLeft ) + 'px'
+              top : String( desiredTop ) + 'px'
             })
             .children('.label-text')
             .html( String( lastLabel + index + 1 ) );
@@ -313,28 +311,30 @@
         var firstLabel = 
           parseInt(
             $('.axis.vertical .label .label-text')[0]
-            .innerHTML ),
+            .innerHTML );
+        console.log( $('.axis.vertical .label')[0].offsetTop );
 
-        removedLabels = $('.axis.vertical .label')
+        var removedLabels = $('.axis.vertical .label')
           .slice(removeCount).each( function( index, element )
           {
             var $element = $( element ),
 
-            desiredLeft = $element.position().left - bufferedWidth;
+            desiredTop = $element.position().top + bufferedHeight;
+
+            console.log( desiredTop );
+            console.log( firstLabel + index - removeCount );
 
             //$element.remove();
             $element.css({ 
-              left : String( desiredLeft ) + 'px'
+              top : String( desiredTop ) + 'px'
             })
             .children('.label-text')
-            .html( String( firstLabel + index - removeCount ) );
+            .html( String( firstLabel - index ) );
           } )
           .remove();
 
         $('.axis.vertical').prepend( removedLabels );
-
       }
-
     }
   });
 
