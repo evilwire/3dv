@@ -300,7 +300,7 @@
               top : String( desiredTop ) + 'px'
             })
             .children('.label-text')
-            .html( String( lastLabel + index + 1 ) );
+            .html( String( lastLabel + removeCount - index ) );
           } )
           .remove();
 
